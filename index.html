@@ -21,10 +21,6 @@
     .body b { font-size: 1.15rem; }
     .body span { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--olive); margin-bottom: .3rem; }
     .body p { color: var(--muted); font-size: .95rem; margin-top: .3rem; }
-    .notes { margin-top: 2.6rem; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.4rem 1.6rem; }
-    .notes h2 { font-size: 1.1rem; margin-bottom: .6rem; }
-    .notes li { margin: .35rem 0 .35rem 1.2rem; color: var(--muted); }
-    .notes li b { color: var(--ink); }
   </style>
 </head>
 <body>
@@ -131,26 +127,6 @@
       </a>
     </div>
 
-    <div class="notes">
-      <h2>Before any version goes live</h2>
-      <ul>
-        <li><b>Check the new Latvian texts.</b> A few short lines are new (hero subtitle, "Kā strādājam" steps, photo captions, team text). Everything else is copied from the current site.</li>
-        <li><b>Upload <code>og-image.jpg</code> to the site root.</b> It is the picture Facebook / WhatsApp show when someone shares the link. The live site points to it, but the file is missing today.</li>
-        <li><b>Add the analytics script back</b> (pulse.sauleskoki.lv). It was left out so local previews don't count as visits.</li>
-        <li><b>Copy the <code>img/</code> folder</b> to the server next to the chosen page, and update the image paths from <code>../img/</code> to <code>img/</code>.</li>
-        <li><b>Version 10 has new Latvian text in the "Kad zvanīt?" section</b> — four short season descriptions, including the line about the 15 April – 30 June felling restriction in towns and villages. They are a draft written by the AI, not copied from the site. Eduards should check every sentence there before it goes live.</li>
-        <li><b>Version 13 has no FAQ on the page, so its code also leaves out the FAQ markup for Google</b> (the other versions keep it). Google only wants that markup when the questions are visible. Everything else in its code is the same as version 12.</li>
-        <li><b>All versions load the full-size photos from <code>img/</code>.</b> Before go-live, make smaller copies (about 1600px on the long side, compressed) so the page loads fast on phones.</li>
-        <li><b>One call button per screen (changed 2026-10-03, all versions).</b> On phones the bottom "Zvanīt" bar steps aside whenever another call button or the number is on screen, and the built-in doubles were removed: the "Zvaniet: 28 394 620" tail of the first FAQ answer (versions 1–12, also in the Google markup), call links inside the service panels (10), the "Zvaniet" row in the hero (11), "Zvanīt" on the service tiles and in the moving line (13), and the extra "Zvanīt" button next to the big number (12, 13). In version 3 the hero's call button is hidden on phones and the number button in the FAQ box is gone; in version 4 the team button scrolls to the contact card instead of dialling.</li>
-        <li><b>Fewer photos (2026-10-03).</b> Galleries were cut to a chosen few: version 10 six, 11 six plates, 12 six, 13 four. Version 11 no longer labels the gear on the hero photo.</li>
-        <li><b>Version 12 has new short Latvian texts</b> — the view labels ("Skats no zemes" / "Skats no galotnes"), the filter chips, "Turiet, lai redzētu pēc", "Saglabāt kontaktu" / "Kopēt numuru" / "Nokopēts", the headings "Seši darbi — viens zvans" and "Viss sākas ar zvanu", and one new sentence: "Jūs redzat koku no dārza. Mēs — arī no vainaga." All AI drafts; Eduards should check them.</li>
-        <li><b>Version 11 has new Latvian text</b> — the six callout labels on the hero photo, the "Kā strādājam" intro and call box, and the plate captions. All of it is an AI draft; Eduards should check the wording. On purpose it describes no cutting technique and has no self-check list.</li>
-        <li><b>The Kling clip is in place.</b> <code>video/hero-1080.mp4</code> (desktop, 6.1 MB) and <code>video/hero-720.mp4</code> (phones, 4.3 MB) were made from <code>kling_20261003_VIDEO_Cinematic__165_0.mp4</code> with <code>./make-video.sh</code>. Versions 6–8, 10, 12 and 13 play it (v6–8: hero background; v10: the second photo card; v12 and v13: the first screen). Version 11 has no video on purpose. If the chosen version uses it, upload the <code>video/</code> folder next to the page. The 19.5 MB Kling original in this folder is only the source; it does not need to go on the server. If you get a new clip, run the script again.</li>
-        <li><b>The Kling clip has a small "KlingAI 3.0" watermark</b> in its bottom-right corner. Versions 10, 12 and 13 crop it away; versions 6–8 show it faintly in the hero. Before going live with one of those, export the clip from Kling without the watermark and run the script again.</li>
-        <li><b>Versions 4 and 5</b> draw their trees with code. Test them on a real phone before choosing — they were checked in Chrome only.</li>
-        <li><b>Logo:</b> each version has the logo redrawn as code (SVG), so it can animate. The old <code>logo.svg</code> was a picture inside an SVG and couldn't move.</li>
-      </ul>
-    </div>
   </div>
 </body>
 </html>
