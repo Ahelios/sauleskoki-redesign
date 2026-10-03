@@ -69,7 +69,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Cik maksā koka nozāģēšana Latvijā?", "acceptedAnswer": { "@type": "Answer", "text": "Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju. Zvaniet: 28 394 620." } },
+      { "@type": "Question", "name": "Cik maksā koka nozāģēšana Latvijā?", "acceptedAnswer": { "@type": "Answer", "text": "Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju." } },
       { "@type": "Question", "name": "Vai Saules Koki strādā visā Latvijā?", "acceptedAnswer": { "@type": "Answer", "text": "Jā, Saules Koki sniedz arborista un kokkopja pakalpojumus visā Latvijā." } },
       { "@type": "Question", "name": "Vai arboristi ir sertificēti?", "acceptedAnswer": { "@type": "Answer", "text": "Jā, visus darbus veic sertificēti arboristi, izmantojot profesionālu aprīkojumu." } },
       { "@type": "Question", "name": "Ko nozīmē arborists?", "acceptedAnswer": { "@type": "Answer", "text": "Arborists jeb kokkopis ir speciālists koku kopšanā, zāģēšanā un koku veselības uzturēšanā." } }
@@ -401,6 +401,9 @@
       .js .proc::after { transform: scaleX(1); }
       .js .proc .step .dot { background: var(--green); border-color: var(--green); color: #fff; }
     }
+    /* one call button per screen: the fixed bar steps aside while another call link or the number is in view */
+    .call-bar { transition: opacity .25s, translate .3s, transform .2s; }
+    .call-bar.hide { opacity: 0 !important; pointer-events: none; translate: 0 16px; }
   </style>
 </head>
 <body>
@@ -580,38 +583,15 @@
     <section class="sec" id="darbi" style="background:var(--sky)">
       <div class="wrap">
         <div class="sec-head">
-          <div class="reveal"><p class="kicker">Darbi</p><h2 class="h2">Mūsu darbi <em>visā Latvijā</em></h2><p class="sub">Izvēlieties, ko gribat redzēt. Klikšķiniet uz attēla, lai apskatītu lielāku.</p></div>
-        </div>
-        <div class="chips reveal" role="group" aria-label="Filtrs" data-chips>
-          <button class="chip" type="button" data-tag="visi" aria-pressed="true">Visi <small></small></button>
-          <button class="chip" type="button" data-tag="vainagi" aria-pressed="false">Vainagi un zari <small></small></button>
-          <button class="chip" type="button" data-tag="zagesana" aria-pressed="false">Zāģēšana pa daļām <small></small></button>
-          <button class="chip" type="button" data-tag="augli" aria-pressed="false">Augļu koki <small></small></button>
-          <button class="chip" type="button" data-tag="celmi" aria-pressed="false">Celmi un šķelda <small></small></button>
-          <button class="chip" type="button" data-tag="augstuma" aria-pressed="false">Skats no galotnes <small></small></button>
-          <button class="chip" type="button" data-tag="komanda" aria-pressed="false">Komanda <small></small></button>
+          <div class="reveal"><p class="kicker">Darbi</p><h2 class="h2">Mūsu darbi <em>visā Latvijā</em></h2><p class="sub">Seši attēli no mūsu darbiem. Klikšķiniet, lai apskatītu lielāku.</p></div>
         </div>
         <div class="wall reveal" style="--d:.1s" data-wall>
-          <figure data-tags="vainagi"><button type="button"><img width="1600" height="1200" src="../img/hero-oak-up.jpg" alt="Ozola vainags, skats no apakšas" loading="lazy"><figcaption>Ozola vainags no apakšas</figcaption></button></figure>
-          <figure data-tags="augstuma"><button type="button"><img width="900" height="1200" src="../img/climb-tall-trees.jpg" alt="Arborists augstā kokā" loading="lazy" style="object-position:50% 30%"><figcaption>Darbs augstu kokos</figcaption></button></figure>
-          <figure data-tags="zagesana"><button type="button"><img width="1440" height="990" src="../img/pine-log-drop.jpg" alt="Priedes zāģēšana pa daļām" loading="lazy"><figcaption>Priedes zāģēšana pa daļām</figcaption></button></figure>
-          <figure data-tags="vainagi augstuma"><button type="button"><img width="1920" height="1080" src="../img/hero-tilia.jpg" alt="Arborists liepas vainagā, skats no augšas" loading="lazy"><figcaption>Liepas vainagā</figcaption></button></figure>
-          <figure data-tags="vainagi augstuma"><button type="button"><img width="675" height="1200" src="../img/climbers-in-oak.jpg" alt="Divi arboristi ozola vainagā" loading="lazy" style="object-position:50% 35%"><figcaption>Divi arboristi ozola vainagā</figcaption></button></figure>
-          <figure data-tags="zagesana"><button type="button"><img width="900" height="1200" src="../img/dismantle-tall.jpg" alt="Koka nozāģēšana pa daļām pie mājas" loading="lazy" style="object-position:50% 40%"><figcaption>Nozāģēšana pa daļām pie mājas</figcaption></button></figure>
-          <figure data-tags="vainagi"><button type="button"><img width="960" height="720" src="../img/lindens-shaped.jpg" alt="Liepas ar veidotiem vainagiem" loading="lazy"><figcaption>Veidoti liepu vainagi</figcaption></button></figure>
-          <figure data-tags="augstuma"><button type="button"><img width="1200" height="900" src="../img/stork-nest.jpg" alt="Stārķu mazuļi ligzdā" loading="lazy"><figcaption>Kokos sastopam arī iemītniekus</figcaption></button></figure>
-          <figure data-tags="augli augstuma"><button type="button"><img width="1200" height="1200" src="../img/above-blossom.jpg" alt="Augļu koka vainags, skats no augšas" loading="lazy" style="object-position:50% 30%"><figcaption>Augļu koka vainags no augšas</figcaption></button></figure>
-          <figure data-tags="celmi augstuma"><button type="button"><img width="900" height="1200" src="../img/above-truck.jpg" alt="Šķeldotājs un kravas auto, skats no koka galotnes" loading="lazy" style="object-position:50% 25%"><figcaption>Šķeldotājs — skats no galotnes</figcaption></button></figure>
-          <figure data-tags="zagesana"><button type="button"><img width="1200" height="1200" src="../img/dismantle-triptych.jpg" alt="Koka nozāģēšana pa daļām trīs posmos" loading="lazy"><figcaption>Nozāģēšana pa daļām — trīs posmi</figcaption></button></figure>
-          <figure data-tags="komanda"><button type="button"><img width="1200" height="1200" src="../img/van.jpg" alt="Saules Koki auto pie objekta" loading="lazy"><figcaption>Atbraucam pie jums</figcaption></button></figure>
-          <figure data-tags="vainagi"><button type="button"><img width="900" height="1200" src="../img/pine-lake.jpg" alt="Priede ar izzāģētiem sausajiem zariem" loading="lazy" style="object-position:50% 35%"><figcaption>Priede pēc sauso zaru izzāģēšanas</figcaption></button></figure>
-          <figure data-tags="vainagi augstuma"><button type="button"><img width="1600" height="900" src="../img/above-tilia.jpg" alt="Liepas vainaga kopšana, skats no augšas" loading="lazy"><figcaption>Liepas vainaga kopšana no augšas</figcaption></button></figure>
-          <figure data-tags="augstuma"><button type="button"><img width="960" height="720" src="../img/birch-above.jpg" alt="Skats no bērza galotnes" loading="lazy"><figcaption>Skats no bērza galotnes</figcaption></button></figure>
-          <figure data-tags="augstuma"><button type="button"><img width="960" height="720" src="../img/trunk-rope-up.jpg" alt="Virve gar koka stumbru uz galotni" loading="lazy"><figcaption>Ceļš uz galotni</figcaption></button></figure>
-          <figure data-tags="komanda"><button type="button"><img width="960" height="720" src="../img/oak-team-wide.jpg" alt="Komanda pie sena ozola" loading="lazy"><figcaption>Komanda pie sena ozola</figcaption></button></figure>
-          <figure data-tags="vainagi"><button type="button"><img width="960" height="720" src="../img/oak-blue-sky.jpg" alt="Sens ozols pēc kopšanas" loading="lazy"><figcaption>Sens ozols pēc kopšanas</figcaption></button></figure>
-          <figure data-tags="zagesana augstuma"><button type="button"><img width="1920" height="2560" src="../img/hero-climber.jpg" alt="Arborists ar motorzāģi uz nozāģēta bērza stumbra" loading="lazy" style="object-position:50% 28%"><figcaption>Bērzs — zāģēšana pa daļām</figcaption></button></figure>
-          <figure data-tags="celmi"><button type="button"><img width="960" height="960" src="../img/stump-steps.jpg" alt="Celma frēzēšana četros soļos" loading="lazy"><figcaption>Celma frēzēšana četros soļos</figcaption></button></figure>
+          <figure><button type="button"><img width="900" height="1200" src="../img/climb-tall-trees.jpg" alt="Arborists augstā kokā" loading="lazy" style="object-position:50% 30%"><figcaption>Darbs augstu kokos</figcaption></button></figure>
+          <figure><button type="button"><img width="1440" height="990" src="../img/pine-log-drop.jpg" alt="Priedes zāģēšana pa daļām" loading="lazy"><figcaption>Priedes zāģēšana pa daļām</figcaption></button></figure>
+          <figure><button type="button"><img width="900" height="1200" src="../img/dismantle-tall.jpg" alt="Koka nozāģēšana pa daļām pie mājas" loading="lazy" style="object-position:50% 40%"><figcaption>Nozāģēšana pa daļām pie mājas</figcaption></button></figure>
+          <figure><button type="button"><img width="960" height="720" src="../img/lindens-shaped.jpg" alt="Liepas ar veidotiem vainagiem" loading="lazy"><figcaption>Veidoti liepu vainagi</figcaption></button></figure>
+          <figure><button type="button"><img width="1200" height="900" src="../img/stork-nest.jpg" alt="Stārķu mazuļi ligzdā" loading="lazy"><figcaption>Kokos sastopam arī iemītniekus</figcaption></button></figure>
+          <figure><button type="button"><img width="960" height="720" src="../img/oak-blue-sky.jpg" alt="Sens ozols pēc kopšanas" loading="lazy"><figcaption>Sens ozols pēc kopšanas</figcaption></button></figure>
         </div>
       </div>
     </section>
@@ -623,7 +603,7 @@
           <div class="reveal"><p class="kicker">Kā strādājam</p><h2 class="h2">Viss sākas <em>ar zvanu</em></h2><p class="sub">Katrs koks ir citāds, tāpēc vispirms apskatām un tikai tad iesakām. Konsultācija ir bez maksas.</p></div>
         </div>
         <ol class="proc reveal" data-proc>
-          <li class="step"><span class="dot">1</span><h3>Zvans</h3><p>Piezvaniet uz <a href="tel:+37128394620">28 394 620</a> un pastāstiet par savu koku.</p></li>
+          <li class="step"><span class="dot">1</span><h3>Zvans</h3><p>Piezvaniet un pastāstiet par savu koku.</p></li>
           <li class="step"><span class="dot">2</span><h3>Konsultācija</h3><p>Bez maksas novērtēsim situāciju un ieteiksim labāko risinājumu.</p></li>
           <li class="step"><span class="dot">3</span><h3>Darbs</h3><p>Strādājam droši — ar virvēm, kāpšanas aprīkojumu un profesionāliem instrumentiem.</p></li>
           <li class="step"><span class="dot">4</span><h3>Rezultāts</h3><p>Vesels, kopts koks — vai līdzena vieta tur, kur bija celms.</p></li>
@@ -655,7 +635,7 @@
       <div class="wrap">
         <div class="sec-head"><div class="reveal"><p class="kicker">Jautājumi</p><h2 class="h2">Biežāk <em>uzdotie</em></h2></div></div>
         <dl class="faq reveal">
-          <div><dt>Cik maksā koka nozāģēšana Latvijā?</dt><dd>Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju. Zvaniet: <a href="tel:+37128394620">28 394 620</a>.</dd></div>
+          <div><dt>Cik maksā koka nozāģēšana Latvijā?</dt><dd>Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju.</dd></div>
           <div><dt>Vai Saules Koki strādā visā Latvijā?</dt><dd>Jā, Saules Koki sniedz arborista un kokkopja pakalpojumus visā Latvijā.</dd></div>
           <div><dt>Vai arboristi ir sertificēti?</dt><dd>Jā, visus darbus veic sertificēti arboristi, izmantojot profesionālu aprīkojumu.</dd></div>
           <div><dt>Ko nozīmē arborists?</dt><dd>Arborists jeb kokkopis ir speciālists koku kopšanā, zāģēšanā un koku veselības uzturēšanā.</dd></div>
@@ -671,7 +651,6 @@
         <a class="phone" href="tel:+37128394620">28 394 620</a>
         <p class="note">Par cenām un konsultāciju — visā Latvijā.</p>
         <div class="c-acts">
-          <a class="btn btn-white" href="tel:+37128394620"><svg class="icon"><use href="#i-phone"/></svg>Zvanīt</a>
           <button class="btn btn-ghost" type="button" data-vcard><svg class="icon"><use href="#i-save"/></svg>Saglabāt kontaktu</button>
           <button class="btn btn-ghost" type="button" data-copy="+371 28 394 620"><svg class="icon"><use href="#i-copy"/></svg><span>Kopēt numuru</span></button>
         </div>
@@ -810,22 +789,7 @@
     const wall = document.querySelector('[data-wall]');
     const lb = document.querySelector('.lb');
     if (wall) {
-      const tiles = [...wall.querySelectorAll('figure')], chips = [...document.querySelectorAll('[data-chips] .chip')];
-      chips.forEach(c => { const t = c.dataset.tag; c.querySelector('small').textContent = t === 'visi' ? tiles.length : tiles.filter(f => f.dataset.tags.split(' ').includes(t)).length; });
-      const filter = tag => {
-        chips.forEach(c => c.setAttribute('aria-pressed', c.dataset.tag === tag));
-        const first = new Map(tiles.map(el => [el, el.getBoundingClientRect()]));
-        tiles.forEach(el => { el.hidden = !(tag === 'visi' || el.dataset.tags.split(' ').includes(tag)); });
-        if (reduce) return;
-        tiles.forEach(el => {
-          if (el.hidden) return;
-          const f = first.get(el), l = el.getBoundingClientRect();
-          if (f.width === 0) { el.animate([{ opacity: 0, transform: 'scale(.94)' }, { opacity: 1, transform: 'none' }], { duration: 380, easing: 'cubic-bezier(.2,.7,.2,1)' }); return; }
-          const dx = f.left - l.left, dy = f.top - l.top;
-          if (dx || dy) el.animate([{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'none' }], { duration: 420, easing: 'cubic-bezier(.2,.7,.2,1)' });
-        });
-      };
-      chips.forEach(c => c.addEventListener('click', () => filter(c.dataset.tag)));
+      const tiles = [...wall.querySelectorAll('figure')];
       // lightbox over the visible tiles
       let cur = 0;
       const visible = () => tiles.filter(el => !el.hidden);
@@ -853,6 +817,16 @@
       catch (_) { label.textContent = copyBtn.dataset.copy; }
       setTimeout(() => { label.textContent = was; copyBtn.classList.remove('done'); }, 1800);
     });
+  </script>
+  <script>
+    // One call button per screen: the fixed phone bar hides while any other call link or the number is in view
+    (() => {
+      const bar = document.querySelector('.call-bar'); if (!bar) return;
+      const others = [...document.querySelectorAll('a[href^="tel:"]')].filter(a => a !== bar && !bar.contains(a));
+      const seen = new Set();
+      const io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)); bar.classList.toggle('hide', seen.size > 0); }, { threshold: 0 });
+      others.forEach(a => io.observe(a));
+    })();
   </script>
 </body>
 </html>

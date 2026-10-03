@@ -69,7 +69,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Cik maksā koka nozāģēšana Latvijā?", "acceptedAnswer": { "@type": "Answer", "text": "Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju. Zvaniet: 28 394 620." } },
+      { "@type": "Question", "name": "Cik maksā koka nozāģēšana Latvijā?", "acceptedAnswer": { "@type": "Answer", "text": "Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju." } },
       { "@type": "Question", "name": "Vai Saules Koki strādā visā Latvijā?", "acceptedAnswer": { "@type": "Answer", "text": "Jā, Saules Koki sniedz arborista un kokkopja pakalpojumus visā Latvijā." } },
       { "@type": "Question", "name": "Vai arboristi ir sertificēti?", "acceptedAnswer": { "@type": "Answer", "text": "Jā, visus darbus veic sertificēti arboristi, izmantojot profesionālu aprīkojumu." } },
       { "@type": "Question", "name": "Ko nozīmē arborists?", "acceptedAnswer": { "@type": "Answer", "text": "Arborists jeb kokkopis ir speciālists koku kopšanā, zāģēšanā un koku veselības uzturēšanā." } }
@@ -192,22 +192,6 @@
     .figcap b { font-weight: 500; color: var(--accent-deep); white-space: nowrap; }
 
     .hero .frame { aspect-ratio: 3 / 4; }
-    .leads { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; overflow: visible; }
-    .leads line { stroke: var(--ink); stroke-width: 1; }
-    .js .leads line { stroke-dasharray: 1; stroke-dashoffset: 1; animation: lead .6s ease-out calc(1s + var(--i) * .22s) forwards; }
-    @keyframes lead { to { stroke-dashoffset: 0; } }
-    .co .pt { position: absolute; left: var(--x); top: var(--y); z-index: 3; width: 22px; height: 22px; translate: -50% -50%; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--mono); font-size: .68rem; font-weight: 500; display: grid; place-items: center; box-shadow: 0 0 0 3px rgba(245, 242, 235, .85); }
-    .js .co .pt { animation: pop .6s var(--ease) calc(.9s + var(--i) * .22s) both; }
-    @keyframes pop { from { scale: 0; } }
-    .co .tag { position: absolute; left: var(--tx); top: var(--ty); z-index: 3; font-family: var(--mono); font-size: .66rem; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; background: rgba(251, 249, 244, .94); color: var(--ink); border: 1px solid var(--line-2); padding: .35rem .5rem; border-radius: 2px; }
-    .co .tag.r { left: auto; right: var(--tr); }
-    .js .co .tag { animation: fadeIn .7s calc(1.3s + var(--i) * .22s) both; }
-    .co .pt { transition: transform .3s var(--ease); }
-    .co .tag { transition: background .25s, color .25s, border-color .25s; }
-    .co:hover .pt { transform: scale(1.2); }
-    .co:hover .tag { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-    .legend { display: none; }
-
     /* ════════ SPEC STRIP (what you get, in one line) ════════ */
     .strip { margin-top: clamp(2.5rem, 7vh, 4.5rem); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); background: var(--card); }
     .strip .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
@@ -356,12 +340,6 @@
       .hero { padding-top: 100px; }
       .hero-grid { grid-template-columns: 1fr; gap: 2.6rem; }
       .hero .fig { max-width: 560px; }
-      .co .tag { display: none; }
-      .leads { display: none; }
-      .legend { display: block; list-style: none; margin-top: 1.2rem; border-top: 1px solid var(--line-2); }
-      .legend li { display: grid; grid-template-columns: 26px 1fr; gap: .8rem; padding: .7rem 0; border-bottom: 1px solid var(--line); font-size: .92rem; color: var(--ink-2); }
-      .legend li i { font-style: normal; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; font-family: var(--mono); font-size: .66rem; font-weight: 500; display: grid; place-items: center; margin-top: 2px; }
-      .legend li b { color: var(--ink); font-weight: 600; }
       .strip .wrap { grid-template-columns: 1fr 1fr; }
       .strip div:nth-child(2) { border-right: 0; }
       .strip div:nth-child(3) { padding-left: 0; border-top: 1px solid var(--line); }
@@ -400,9 +378,11 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: .001ms !important; }
       html { scroll-behavior: auto; }
-      .js .leads line { stroke-dashoffset: 0; }
       .leaves { display: none; }
     }
+    /* one call button per screen: the fixed bar steps aside while another call link or the number is in view */
+    .call-bar { transition: opacity .25s, translate .3s, transform .2s; }
+    .call-bar.hide { opacity: 0 !important; pointer-events: none; translate: 0 16px; }
   </style>
 </head>
 <body>
@@ -493,31 +473,15 @@
             <div><dt>Sertifikāts</dt><dd>Sertificēti arboristi</dd></div>
             <div><dt>Darba zona</dt><dd>Visa Latvija</dd></div>
             <div><dt>Konsultācija</dt><dd>0 €</dd></div>
-            <div><dt>Zvaniet</dt><dd><a href="tel:+37128394620">28 394 620</a></dd></div>
+            <div><dt>Aprīkojums</dt><dd>Profesionāls</dd></div>
           </dl>
         </div>
 
-        <figure class="fig" data-callouts>
+        <figure class="fig">
           <div class="frame marks">
-            <img width="1920" height="2560" src="../img/hero-climber.jpg" alt="Arborists ar motorzāģi uz nozāģēta bērza stumbra" fetchpriority="high" decoding="async">
-            <svg class="leads" aria-hidden="true"></svg>
-            <!-- each callout: a numbered dot on the photo (--x/--y) and a label chip (--tx/--ty, or --tr for right-anchored) -->
-            <span class="co" style="--i:0;--x:41%;--y:8%;--tx:58%;--ty:2.5%"><span class="pt">1</span><span class="tag">Ķivere</span></span>
-            <span class="co" style="--i:1;--x:62%;--y:22%;--tr:2%;--ty:30%"><span class="pt">2</span><span class="tag r">Stumbrs</span></span>
-            <span class="co" style="--i:2;--x:15%;--y:41%;--tx:3%;--ty:25%"><span class="pt">3</span><span class="tag">Motorzāģis</span></span>
-            <span class="co" style="--i:3;--x:60%;--y:46%;--tr:2%;--ty:50%"><span class="pt">4</span><span class="tag r">Virve ap stumbru</span></span>
-            <span class="co" style="--i:4;--x:23%;--y:57%;--tx:2%;--ty:64%"><span class="pt">5</span><span class="tag">Iekare un virves</span></span>
-            <span class="co" style="--i:5;--x:34%;--y:67%;--tx:40%;--ty:76%"><span class="pt">6</span><span class="tag">Kāpšanas dzelži</span></span>
+            <img width="1920" height="2560" src="../img/hero-climber.jpg" alt="Arborists uz nozāģēta bērza stumbra" fetchpriority="high" decoding="async">
           </div>
           <figcaption class="figcap"><b>Att. 01</b><span>Arborists uz nozāģēta bērza stumbra.</span></figcaption>
-          <ol class="legend" aria-label="Attēla apzīmējumi">
-            <li><i>1</i><span><b>Ķivere</b> ar sejsargu un dzirdes aizsargiem.</span></li>
-            <li><i>2</i><span><b>Stumbrs</b> — nozāģēta bērza augšdaļa.</span></li>
-            <li><i>3</i><span><b>Motorzāģis</b>, piestiprināts pie iekares.</span></li>
-            <li><i>4</i><span><b>Virve ap stumbru</b> — notur arboristu darba pozīcijā.</span></li>
-            <li><i>5</i><span><b>Iekare un virves</b> — arborists vienmēr ir piesiets.</span></li>
-            <li><i>6</i><span><b>Kāpšanas dzelži</b> — stiprinās pie zābakiem un ieķeras stumbrā.</span></li>
-          </ol>
         </figure>
       </div>
       <div class="strip" aria-label="Īsumā">
@@ -548,31 +512,26 @@
             <div class="top"><span class="num">02</span><svg class="pic"><use href="#p-crown"/></svg></div>
             <h3>Koku vainagu veidošana</h3>
             <p>Profesionāla vainagu koriģēšana koka veselībai un estētikai.</p>
-            <a class="ref" href="#atteli" data-plate="6">Att. 07 — veidoti liepu vainagi <svg class="icon"><use href="#i-arrow"/></svg></a>
           </article>
           <article class="svc">
             <div class="top"><span class="num">03</span><svg class="pic"><use href="#p-dead"/></svg></div>
             <h3>Sauso un slimo zaru izzāģēšana</h3>
             <p>Savlaicīga bojātu zaru noņemšana palīdz kokam atgūt spēku un novērš draudus.</p>
-            <a class="ref" href="#atteli" data-plate="12">Att. 13 — priede pēc izzāģēšanas <svg class="icon"><use href="#i-arrow"/></svg></a>
           </article>
           <article class="svc">
             <div class="top"><span class="num">04</span><svg class="pic"><use href="#p-section"/></svg></div>
             <h3>Bīstamu koku zāģēšana pa daļām</h3>
             <p>Kontrolēta un droša nozāģēšana pat sarežģītos apstākļos — arī tur, kur blakus ir mājas, žogi vai vadi.</p>
-            <a class="ref" href="#atteli" data-plate="5">Att. 06 — zāģēšana pie mājas <svg class="icon"><use href="#i-arrow"/></svg></a>
           </article>
           <article class="svc">
             <div class="top"><span class="num">05</span><svg class="pic"><use href="#p-fruit"/></svg></div>
             <h3>Augļu koku kopšana</h3>
             <p>Atzarošana un veidošana labākai ražai un ilgmūžībai.</p>
-            <a class="ref" href="#atteli" data-plate="8">Att. 09 — augļu koka vainags <svg class="icon"><use href="#i-arrow"/></svg></a>
           </article>
           <article class="svc">
             <div class="top"><span class="num">06</span><svg class="pic"><use href="#p-stump"/></svg></div>
             <h3>Koksnes šķeldošana, celmu frēzēšana</h3>
             <p>Pārvēršam koksni šķeldā, kas noderēs kā pārklājums dārzam vai kompostam.</p>
-            <a class="ref" href="#atteli" data-plate="9">Att. 10 — šķeldotājs darbā <svg class="icon"><use href="#i-arrow"/></svg></a>
           </article>
         </div>
       </div>
@@ -586,7 +545,7 @@
           <p class="reveal" style="--d:.1s">Tāpēc nav vienas atbildes visiem. Viss sākas ar zvanu: apskatām koku, novērtējam situāciju un ieteicam labāko risinājumu. Konsultācija ir bez maksas.</p>
         </div>
         <ol class="flow reveal">
-          <li><span class="n">Solis 01</span><h3>Zvans</h3><p>Piezvaniet uz <a href="tel:+37128394620">28 394 620</a> un pastāstiet par savu koku.</p></li>
+          <li><span class="n">Solis 01</span><h3>Zvans</h3><p>Piezvaniet un pastāstiet par savu koku.</p></li>
           <li><span class="n">Solis 02</span><h3>Konsultācija</h3><p>Bez maksas novērtēsim situāciju un ieteiksim labāko risinājumu.</p></li>
           <li><span class="n">Solis 03</span><h3>Darbs</h3><p>Strādājam droši — ar virvēm, kāpšanas aprīkojumu un profesionāliem instrumentiem.</p></li>
           <li><span class="n">Solis 04</span><h3>Rezultāts</h3><p>Vesels, kopts koks — vai līdzena vieta tur, kur bija celms.</p></li>
@@ -635,7 +594,7 @@
     <section class="sec alt" id="atteli">
       <div class="wrap">
         <div class="sec-head">
-          <div class="reveal"><p class="kicker">04 / Attēli</p><h2 class="h2">Att. 01–13 — <em>darbi visā Latvijā</em></h2></div>
+          <div class="reveal"><p class="kicker">04 / Attēli</p><h2 class="h2">Darbi <em>visā Latvijā</em></h2></div>
           <p class="reveal" style="--d:.1s">Fotogrāfijas no mūsu darbiem. Izvēlieties attēlu sarakstā vai pārslēdziet ar bultiņām.</p>
         </div>
         <div class="plates reveal" data-plates>
@@ -644,7 +603,7 @@
               <img width="1600" height="1200" src="../img/hero-oak-up.jpg" alt="Ozola vainags, skats no apakšas" decoding="async">
             </div>
             <div class="stage-cap">
-              <p class="figcap"><b data-num>Att. 01 / 13</b><span data-cap>Ozola vainags, skats no apakšas</span></p>
+              <p class="figcap"><b data-num>Att. 01 / 06</b><span data-cap>Ozola vainags, skats no apakšas</span></p>
               <div class="ctl">
                 <button type="button" data-dir="-1" aria-label="Iepriekšējais attēls"><svg class="icon"><use href="#i-prev"/></svg></button>
                 <button type="button" data-dir="1" aria-label="Nākamais attēls"><svg class="icon"><use href="#i-next"/></svg></button>
@@ -655,17 +614,10 @@
           <ol class="plate-list" aria-label="Attēlu saraksts">
             <li><button type="button" data-src="../img/hero-oak-up.jpg" data-alt="Ozola vainags, skats no apakšas" aria-pressed="true"><img width="1600" height="1200" src="../img/hero-oak-up.jpg" alt="" loading="lazy"><span class="pn">01</span><span class="pt-cap">Ozola vainags, skats no apakšas</span></button></li>
             <li><button type="button" data-src="../img/climb-tall-trees.jpg" data-alt="Arborists augstā kokā" aria-pressed="false"><img width="900" height="1200" src="../img/climb-tall-trees.jpg" alt="" loading="lazy"><span class="pn">02</span><span class="pt-cap">Darbs augstu kokos</span></button></li>
-            <li><button type="button" data-src="../img/pine-log-drop.jpg" data-alt="Priedes zāģēšana pa daļām" aria-pressed="false"><img width="1440" height="990" src="../img/pine-log-drop.jpg" alt="" loading="lazy"><span class="pn">03</span><span class="pt-cap">Priedes zāģēšana pa daļām</span></button></li>
-            <li><button type="button" data-src="../img/hero-tilia.jpg" data-alt="Liepas vainaga kopšana, skats no augšas" aria-pressed="false"><img width="1920" height="1080" src="../img/hero-tilia.jpg" alt="" loading="lazy"><span class="pn">04</span><span class="pt-cap">Liepas vainaga kopšana</span></button></li>
-            <li><button type="button" data-src="../img/climbers-in-oak.jpg" data-alt="Divi arboristi ozola vainagā" aria-pressed="false"><img width="675" height="1200" src="../img/climbers-in-oak.jpg" alt="" loading="lazy"><span class="pn">05</span><span class="pt-cap">Divi arboristi ozola vainagā</span></button></li>
-            <li><button type="button" data-src="../img/dismantle-tall.jpg" data-alt="Koka nozāģēšana pa daļām pie mājas" aria-pressed="false"><img width="900" height="1200" src="../img/dismantle-tall.jpg" alt="" loading="lazy"><span class="pn">06</span><span class="pt-cap">Nozāģēšana pa daļām pie mājas</span></button></li>
-            <li><button type="button" data-src="../img/lindens-shaped.jpg" data-alt="Liepas ar veidotiem vainagiem" aria-pressed="false"><img width="960" height="720" src="../img/lindens-shaped.jpg" alt="" loading="lazy"><span class="pn">07</span><span class="pt-cap">Veidoti liepu vainagi</span></button></li>
-            <li><button type="button" data-src="../img/stork-nest.jpg" data-alt="Stārķu mazuļi ligzdā" aria-pressed="false"><img width="1200" height="900" src="../img/stork-nest.jpg" alt="" loading="lazy"><span class="pn">08</span><span class="pt-cap">Kokos sastopam arī iemītniekus</span></button></li>
-            <li><button type="button" data-src="../img/above-blossom.jpg" data-alt="Augļu koka vainags, skats no augšas" aria-pressed="false"><img width="1200" height="1200" src="../img/above-blossom.jpg" alt="" loading="lazy"><span class="pn">09</span><span class="pt-cap">Augļu koka vainags no augšas</span></button></li>
-            <li><button type="button" data-src="../img/above-truck.jpg" data-alt="Šķeldotājs un kravas auto, skats no koka galotnes" aria-pressed="false"><img width="900" height="1200" src="../img/above-truck.jpg" alt="" loading="lazy"><span class="pn">10</span><span class="pt-cap">Šķeldotājs — skats no galotnes</span></button></li>
-            <li><button type="button" data-src="../img/dismantle-triptych.jpg" data-alt="Koka nozāģēšana pa daļām trīs posmos" aria-pressed="false"><img width="1200" height="1200" src="../img/dismantle-triptych.jpg" alt="" loading="lazy"><span class="pn">11</span><span class="pt-cap">Nozāģēšana pa daļām — trīs posmi</span></button></li>
-            <li><button type="button" data-src="../img/van.jpg" data-alt="Saules Koki auto pie objekta" aria-pressed="false"><img width="1200" height="1200" src="../img/van.jpg" alt="" loading="lazy"><span class="pn">12</span><span class="pt-cap">Atbraucam pie jums</span></button></li>
-            <li><button type="button" data-src="../img/pine-lake.jpg" data-alt="Priede ar izzāģētiem sausajiem zariem" aria-pressed="false"><img width="900" height="1200" src="../img/pine-lake.jpg" alt="" loading="lazy"><span class="pn">13</span><span class="pt-cap">Priede pēc sauso zaru izzāģēšanas</span></button></li>
+            <li><button type="button" data-src="../img/dismantle-tall.jpg" data-alt="Koka nozāģēšana pa daļām pie mājas" aria-pressed="false"><img width="900" height="1200" src="../img/dismantle-tall.jpg" alt="" loading="lazy"><span class="pn">03</span><span class="pt-cap">Nozāģēšana pa daļām pie mājas</span></button></li>
+            <li><button type="button" data-src="../img/lindens-shaped.jpg" data-alt="Liepas ar veidotiem vainagiem" aria-pressed="false"><img width="960" height="720" src="../img/lindens-shaped.jpg" alt="" loading="lazy"><span class="pn">04</span><span class="pt-cap">Veidoti liepu vainagi</span></button></li>
+            <li><button type="button" data-src="../img/stork-nest.jpg" data-alt="Stārķu mazuļi ligzdā" aria-pressed="false"><img width="1200" height="900" src="../img/stork-nest.jpg" alt="" loading="lazy"><span class="pn">05</span><span class="pt-cap">Kokos sastopam arī iemītniekus</span></button></li>
+            <li><button type="button" data-src="../img/pine-lake.jpg" data-alt="Priede ar izzāģētiem sausajiem zariem" aria-pressed="false"><img width="900" height="1200" src="../img/pine-lake.jpg" alt="" loading="lazy"><span class="pn">06</span><span class="pt-cap">Priede pēc sauso zaru izzāģēšanas</span></button></li>
           </ol>
         </div>
       </div>
@@ -677,7 +629,7 @@
         <div class="team-grid">
           <figure class="fig reveal">
             <div class="frame marks" style="aspect-ratio:4/3"><img width="960" height="720" src="../img/team-oak.jpg" alt="Saules Koki arboristi pie sena ozola" loading="lazy"></div>
-            <figcaption class="figcap"><b>Att. 14</b><span>Komanda pie sena ozola</span></figcaption>
+            <figcaption class="figcap"><b>Komanda</b><span>Pie sena ozola</span></figcaption>
           </figure>
           <div class="team-copy reveal" style="--d:.12s">
             <p class="kicker">05 / Komanda</p>
@@ -700,7 +652,7 @@
           <div class="reveal"><p class="kicker">06 / Jautājumi</p><h2 class="h2">Biežāk <em>uzdotie</em></h2></div>
         </div>
         <div class="faq reveal">
-          <article><span class="mono" style="color:var(--accent-deep)">J. 01</span><p class="q">Cik maksā koka nozāģēšana Latvijā?</p><p class="a">Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju. Zvaniet: <a href="tel:+37128394620">28 394 620</a>.</p></article>
+          <article><span class="mono" style="color:var(--accent-deep)">J. 01</span><p class="q">Cik maksā koka nozāģēšana Latvijā?</p><p class="a">Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju.</p></article>
           <article><span class="mono" style="color:var(--accent-deep)">J. 02</span><p class="q">Vai Saules Koki strādā visā Latvijā?</p><p class="a">Jā, Saules Koki sniedz arborista un kokkopja pakalpojumus visā Latvijā.</p></article>
           <article><span class="mono" style="color:var(--accent-deep)">J. 03</span><p class="q">Vai arboristi ir sertificēti?</p><p class="a">Jā, visus darbus veic sertificēti arboristi, izmantojot profesionālu aprīkojumu.</p></article>
           <article><span class="mono" style="color:var(--accent-deep)">J. 04</span><p class="q">Ko nozīmē arborists?</p><p class="a">Arborists jeb kokkopis ir speciālists koku kopšanā, zāģēšanā un koku veselības uzturēšanā.</p></article>
@@ -755,30 +707,6 @@
     const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // ── Photo callouts: draw a thin line from each numbered dot to its label ──
-    function drawLeads() {
-      document.querySelectorAll('[data-callouts]').forEach(fig => {
-        const frame = fig.querySelector('.frame'), svg = fig.querySelector('.leads'), fr = frame.getBoundingClientRect();
-        svg.innerHTML = '';
-        fig.querySelectorAll('.co').forEach(co => {
-          const tag = co.querySelector('.tag');
-          if (!tag || getComputedStyle(tag).display === 'none') return;
-          const d = co.querySelector('.pt').getBoundingClientRect(), t = tag.getBoundingClientRect();
-          const dx = d.left + d.width / 2 - fr.left, dy = d.top + d.height / 2 - fr.top;
-          const leftEdge = t.left - fr.left, rightEdge = t.right - fr.left, ty = t.top + t.height / 2 - fr.top;
-          const tx = Math.abs(leftEdge - dx) < Math.abs(rightEdge - dx) ? leftEdge : rightEdge;   // join the label on the side nearest the dot
-          const line = document.createElementNS(NS, 'line');
-          line.setAttribute('x1', dx.toFixed(1)); line.setAttribute('y1', dy.toFixed(1)); line.setAttribute('x2', tx.toFixed(1)); line.setAttribute('y2', ty.toFixed(1));
-          line.setAttribute('pathLength', '1');
-          line.style.setProperty('--i', co.style.getPropertyValue('--i') || 0);
-          svg.appendChild(line);
-        });
-      });
-    }
-    drawLeads();
-    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(drawLeads, 120); });
-    document.fonts && document.fonts.ready.then(drawLeads);
-
     // ── Before / after: a blink comparator (the photos take turns) ──
     const blink = document.querySelector('[data-blink]');
     if (blink) {
@@ -812,7 +740,7 @@
         clearTimeout(fadeT);
         if (changed && !reduce) { img.classList.add('fade'); fadeT = setTimeout(() => { put(); img.onload = () => img.classList.remove('fade'); setTimeout(() => img.classList.remove('fade'), 700); }, 200); }
         else put();
-        num.textContent = `Att. ${String(cur + 1).padStart(2, '0')} / ${items.length}`;
+        num.textContent = `Att. ${String(cur + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
         cap.textContent = b.querySelector('.pt-cap').textContent;
         items.forEach((x, k) => x.setAttribute('aria-pressed', k === cur));
         b.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
@@ -898,6 +826,16 @@
       });
     }), { rootMargin: '-45% 0px -50% 0px' });
     document.querySelectorAll('main > section[id]').forEach(sec => spy.observe(sec));
+  </script>
+  <script>
+    // One call button per screen: the fixed phone bar hides while any other call link or the number is in view
+    (() => {
+      const bar = document.querySelector('.call-bar'); if (!bar) return;
+      const others = [...document.querySelectorAll('a[href^="tel:"]')].filter(a => a !== bar && !bar.contains(a));
+      const seen = new Set();
+      const io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)); bar.classList.toggle('hide', seen.size > 0); }, { threshold: 0 });
+      others.forEach(a => io.observe(a));
+    })();
   </script>
 </body>
 </html>

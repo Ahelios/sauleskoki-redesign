@@ -69,7 +69,7 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      { "@type": "Question", "name": "Cik maksā koka nozāģēšana Latvijā?", "acceptedAnswer": { "@type": "Answer", "text": "Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju. Zvaniet: 28 394 620." } },
+      { "@type": "Question", "name": "Cik maksā koka nozāģēšana Latvijā?", "acceptedAnswer": { "@type": "Answer", "text": "Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju." } },
       { "@type": "Question", "name": "Vai Saules Koki strādā visā Latvijā?", "acceptedAnswer": { "@type": "Answer", "text": "Jā, Saules Koki sniedz arborista un kokkopja pakalpojumus visā Latvijā." } },
       { "@type": "Question", "name": "Vai arboristi ir sertificēti?", "acceptedAnswer": { "@type": "Answer", "text": "Jā, visus darbus veic sertificēti arboristi, izmantojot profesionālu aprīkojumu." } },
       { "@type": "Question", "name": "Ko nozīmē arborists?", "acceptedAnswer": { "@type": "Answer", "text": "Arborists jeb kokkopis ir speciālists koku kopšanā, zāģēšanā un koku veselības uzturēšanā." } }
@@ -411,6 +411,9 @@
       html { scroll-behavior: auto; }
       .js .rings path { opacity: 1 !important; stroke-dashoffset: 0 !important; }
     }
+    /* one call button per screen: the fixed bar steps aside while another call link or the number is in view */
+    .call-bar { transition: opacity .25s, translate .3s, transform .2s; }
+    .call-bar.hide { opacity: 0 !important; pointer-events: none; translate: 0 16px; }
   </style>
 </head>
 <body>
@@ -517,7 +520,7 @@
           <span>Sertificēti arboristi</span>
           <span>Visā Latvijā</span>
           <span>Bezmaksas konsultācija</span>
-          <span><a href="tel:+37128394620">Zvaniet 28 394 620</a></span>
+          <span>Profesionāls aprīkojums</span>
         </div>
       </div>
     </section>
@@ -546,27 +549,27 @@
           <article class="panel on">
             <img width="675" height="1200" src="../img/climbers-in-oak.jpg" alt="Divi arboristi ozola vainagā" loading="lazy" style="object-position:50% 30%">
             <button class="tab" type="button" aria-expanded="true" aria-controls="svc-1"><span class="vl"><b>01</b>Koku vainagu veidošana</span></button>
-            <div class="pbody" id="svc-1"><span class="num">01 / 05</span><h3>Koku vainagu veidošana</h3><p>Profesionāla vainagu koriģēšana koka veselībai un estētikai.</p><a href="tel:+37128394620">Zvanīt 28 394 620 <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+            <div class="pbody" id="svc-1"><span class="num">01 / 05</span><h3>Koku vainagu veidošana</h3><p>Profesionāla vainagu koriģēšana koka veselībai un estētikai.</p></div>
           </article>
           <article class="panel">
             <img width="900" height="1200" src="../img/pine-lake.jpg" alt="Priede ar izzāģētiem sausajiem zariem pie ezera" loading="lazy" style="object-position:50% 40%">
             <button class="tab" type="button" aria-expanded="false" aria-controls="svc-2"><span class="vl"><b>02</b>Sauso un slimo zaru izzāģēšana</span></button>
-            <div class="pbody" id="svc-2"><span class="num">02 / 05</span><h3>Sauso un slimo zaru izzāģēšana</h3><p>Savlaicīga bojātu zaru noņemšana palīdz kokam atgūt spēku un novērš draudus.</p><a href="tel:+37128394620">Zvanīt 28 394 620 <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+            <div class="pbody" id="svc-2"><span class="num">02 / 05</span><h3>Sauso un slimo zaru izzāģēšana</h3><p>Savlaicīga bojātu zaru noņemšana palīdz kokam atgūt spēku un novērš draudus.</p></div>
           </article>
           <article class="panel">
             <img width="900" height="1200" src="../img/dismantle-tall.jpg" alt="Bērza zāģēšana pa daļām blakus mājai" loading="lazy" style="object-position:50% 40%">
             <button class="tab" type="button" aria-expanded="false" aria-controls="svc-3"><span class="vl"><b>03</b>Bīstamu koku zāģēšana pa daļām</span></button>
-            <div class="pbody" id="svc-3"><span class="num">03 / 05</span><h3>Bīstamu koku zāģēšana pa daļām</h3><p>Kontrolēta un droša nozāģēšana pat sarežģītos apstākļos — arī tur, kur blakus ir mājas, žogi vai vadi.</p><a href="tel:+37128394620">Zvanīt 28 394 620 <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+            <div class="pbody" id="svc-3"><span class="num">03 / 05</span><h3>Bīstamu koku zāģēšana pa daļām</h3><p>Kontrolēta un droša nozāģēšana pat sarežģītos apstākļos — arī tur, kur blakus ir mājas, žogi vai vadi.</p></div>
           </article>
           <article class="panel">
             <img width="1200" height="1200" src="../img/above-blossom.jpg" alt="Augļu koka vainags, skats no augšas" loading="lazy">
             <button class="tab" type="button" aria-expanded="false" aria-controls="svc-4"><span class="vl"><b>04</b>Augļu koku kopšana</span></button>
-            <div class="pbody" id="svc-4"><span class="num">04 / 05</span><h3>Augļu koku kopšana</h3><p>Atzarošana un veidošana labākai ražai un ilgmūžībai.</p><a href="tel:+37128394620">Zvanīt 28 394 620 <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+            <div class="pbody" id="svc-4"><span class="num">04 / 05</span><h3>Augļu koku kopšana</h3><p>Atzarošana un veidošana labākai ražai un ilgmūžībai.</p></div>
           </article>
           <article class="panel">
             <img width="900" height="1200" src="../img/above-truck.jpg" alt="Šķeldotājs un kravas auto, skats no koka galotnes" loading="lazy" style="object-position:50% 30%">
             <button class="tab" type="button" aria-expanded="false" aria-controls="svc-5"><span class="vl"><b>05</b>Šķeldošana, celmu frēzēšana</span></button>
-            <div class="pbody" id="svc-5"><span class="num">05 / 05</span><h3>Koksnes šķeldošana, celmu frēzēšana</h3><p>Pārvēršam koksni šķeldā, kas noderēs kā pārklājums dārzam vai kompostam.</p><a href="tel:+37128394620">Zvanīt 28 394 620 <svg class="icon"><use href="#i-arrow"/></svg></a></div>
+            <div class="pbody" id="svc-5"><span class="num">05 / 05</span><h3>Koksnes šķeldošana, celmu frēzēšana</h3><p>Pārvēršam koksni šķeldā, kas noderēs kā pārklājums dārzam vai kompostam.</p></div>
           </article>
         </div>
 
@@ -650,9 +653,6 @@
           <figure class="reveal"><button type="button"><img width="1200" height="1200" src="../img/van.jpg" alt="Saules Koki auto pie objekta" loading="lazy"></button><figcaption><span class="cap">Atbraucam pie jums</span><svg class="ico-rings"><use href="#rings-ico"/></svg></figcaption></figure>
           <figure class="reveal" style="--d:.05s"><button type="button"><img width="960" height="720" src="../img/oak-blue-sky.jpg" alt="Sens ozols pēc kopšanas" loading="lazy"></button><figcaption><span class="cap">Sena ozola kopšana</span><svg class="ico-rings"><use href="#rings-ico"/></svg></figcaption></figure>
           <figure class="reveal" style="--d:.1s"><button type="button"><img width="1200" height="900" src="../img/stork-nest.jpg" alt="Stārķu mazuļi ligzdā" loading="lazy"></button><figcaption><span class="cap">Kokos sastopam arī iemītniekus</span><svg class="ico-rings"><use href="#rings-ico"/></svg></figcaption></figure>
-          <figure class="reveal"><button type="button"><img width="960" height="720" src="../img/birch-above.jpg" alt="Skats no bērza galotnes" loading="lazy"></button><figcaption><span class="cap">Skats no galotnes</span><svg class="ico-rings"><use href="#rings-ico"/></svg></figcaption></figure>
-          <figure class="reveal" style="--d:.05s"><button type="button"><img width="960" height="720" src="../img/trunk-rope-up.jpg" alt="Virve gar koka stumbru uz galotni" loading="lazy"></button><figcaption><span class="cap">Ceļš uz galotni</span><svg class="ico-rings"><use href="#rings-ico"/></svg></figcaption></figure>
-          <figure class="reveal" style="--d:.1s"><button type="button"><img width="960" height="720" src="../img/oak-team-wide.jpg" alt="Komanda pie sena ozola" loading="lazy"></button><figcaption><span class="cap">Komanda pie sena ozola</span><svg class="ico-rings"><use href="#rings-ico"/></svg></figcaption></figure>
         </div>
       </div>
     </section>
@@ -670,7 +670,7 @@
           </div>
         </div>
         <div class="proc">
-          <div class="reveal"><b>01</b><h3>Zvans</h3><p>Piezvaniet uz <a href="tel:+37128394620">28 394 620</a> un pastāstiet par savu koku.</p></div>
+          <div class="reveal"><b>01</b><h3>Zvans</h3><p>Piezvaniet un pastāstiet par savu koku.</p></div>
           <div class="reveal" style="--d:.1s"><b>02</b><h3>Konsultācija</h3><p>Bez maksas novērtēsim situāciju un ieteiksim labāko risinājumu.</p></div>
           <div class="reveal" style="--d:.2s"><b>03</b><h3>Darbs</h3><p>Strādājam droši — ar virvēm, kāpšanas aprīkojumu un profesionāliem instrumentiem.</p></div>
           <div class="reveal" style="--d:.3s"><b>04</b><h3>Rezultāts</h3><p>Vesels, kopts koks — vai līdzena vieta tur, kur bija celms.</p></div>
@@ -687,7 +687,7 @@
       <div class="wrap faq-grid">
         <div class="reveal"><p class="kicker"><svg class="ico-rings"><use href="#rings-ico"/></svg>06 / Jautājumi</p><h2 class="h2">Biežāk <em>uzdotie</em></h2></div>
         <dl class="qa reveal" style="--d:.1s">
-          <div><dt>Cik maksā koka nozāģēšana Latvijā?</dt><dd>Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju. Zvaniet: <a href="tel:+37128394620">28 394 620</a>.</dd></div>
+          <div><dt>Cik maksā koka nozāģēšana Latvijā?</dt><dd>Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju.</dd></div>
           <div><dt>Vai Saules Koki strādā visā Latvijā?</dt><dd>Jā, Saules Koki sniedz arborista un kokkopja pakalpojumus visā Latvijā.</dd></div>
           <div><dt>Vai arboristi ir sertificēti?</dt><dd>Jā, visus darbus veic sertificēti arboristi, izmantojot profesionālu aprīkojumu.</dd></div>
           <div><dt>Ko nozīmē arborists?</dt><dd>Arborists jeb kokkopis ir speciālists koku kopšanā, zāģēšanā un koku veselības uzturēšanā.</dd></div>
@@ -897,6 +897,16 @@
     lb.querySelector('.next').onclick = () => show(curImg + 1);
     lb.addEventListener('click', e => { if (e.target.classList.contains('lb-inner')) lb.close(); });
     addEventListener('keydown', e => { if (!lb.open) return; if (e.key === 'ArrowLeft') show(curImg - 1); if (e.key === 'ArrowRight') show(curImg + 1); });
+  </script>
+  <script>
+    // One call button per screen: the fixed phone bar hides while any other call link or the number is in view
+    (() => {
+      const bar = document.querySelector('.call-bar'); if (!bar) return;
+      const others = [...document.querySelectorAll('a[href^="tel:"]')].filter(a => a !== bar && !bar.contains(a));
+      const seen = new Set();
+      const io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)); bar.classList.toggle('hide', seen.size > 0); }, { threshold: 0 });
+      others.forEach(a => io.observe(a));
+    })();
   </script>
 </body>
 </html>

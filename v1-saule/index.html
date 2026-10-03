@@ -101,7 +101,7 @@
         "name": "Cik maksā koka nozāģēšana Latvijā?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju. Zvaniet: 28 394 620."
+          "text": "Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju."
         }
       },
       {
@@ -502,6 +502,9 @@
       html { scroll-behavior: auto; }
     }
       .brand .sun-text { display: none; }   /* too small to read in the menu-bar icon */
+    /* one call button per screen: the fixed bar steps aside while another call link or the number is in view */
+    .call-bar { transition: opacity .25s, translate .3s, transform .2s; }
+    .call-bar.hide { opacity: 0 !important; pointer-events: none; translate: 0 16px; }
   </style>
 </head>
 <body>
@@ -890,7 +893,7 @@
         <div class="faq">
           <details class="reveal">
             <summary>Cik maksā koka nozāģēšana Latvijā?<span class="plus"><svg class="icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-            <p class="ans">Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju. Zvaniet: <a href="tel:+37128394620">28 394 620</a>.</p>
+            <p class="ans">Cena atkarīga no koka lieluma un sarežģītības. Saules Koki piedāvā bezmaksas konsultāciju.</p>
           </details>
           <details class="reveal">
             <summary>Vai Saules Koki strādā visā Latvijā?<span class="plus"><svg class="icon" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
@@ -1095,6 +1098,16 @@
     lb.querySelector('.next').onclick = () => show(cur + 1);
     lb.addEventListener('click', e => { if (e.target.classList.contains('lb-inner')) lb.close(); });
     addEventListener('keydown', e => { if (!lb.open) return; if (e.key === 'ArrowLeft') show(cur - 1); if (e.key === 'ArrowRight') show(cur + 1); });
+  </script>
+  <script>
+    // One call button per screen: the fixed phone bar hides while any other call link or the number is in view
+    (() => {
+      const bar = document.querySelector('.call-bar'); if (!bar) return;
+      const others = [...document.querySelectorAll('a[href^="tel:"]')].filter(a => a !== bar && !bar.contains(a));
+      const seen = new Set();
+      const io = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target)); bar.classList.toggle('hide', seen.size > 0); }, { threshold: 0 });
+      others.forEach(a => io.observe(a));
+    })();
   </script>
 </body>
 </html>
