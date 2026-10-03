@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Fontu salīdzinājums</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..600&family=Manrope:wght@500;600;700&family=Outfit:wght@400;500;600&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Hanken Grotesk', system-ui, sans-serif; background: #e9e4d6; color: #f4ecdb; padding: 32px 16px 64px; }
+    .intro { max-width: 1200px; margin: 0 auto 24px; color: #1a2114; }
+    .intro h1 { font-size: 1.6rem; margin-bottom: .3rem; }
+    .intro p { color: #555a4b; }
+    .opt { max-width: 1200px; margin: 0 auto 28px; background: #0e160c; border-radius: 10px; padding: 48px clamp(20px, 5vw, 64px); position: relative; overflow: hidden; }
+    .opt::before { content: ''; position: absolute; width: 700px; height: 700px; right: -260px; top: -380px; border-radius: 50%; background: radial-gradient(circle, rgba(227, 169, 69, .25), transparent 62%); }
+    .label { position: absolute; top: 16px; right: 18px; background: #e3a945; color: #0e160c; font-weight: 700; font-size: .85rem; padding: .35rem .7rem; border-radius: 999px; }
+    .label small { font-weight: 500; opacity: .8; }
+    .hero { font-size: clamp(2.4rem, 5.4vw, 4.6rem); line-height: 1; letter-spacing: -.02em; margin-bottom: 2rem; position: relative; }
+    .hero .acc { color: #f4d083; }
+    .big { font-size: clamp(1.6rem, 3vw, 2.5rem); line-height: 1.22; max-width: 30ch; position: relative; }
+    .big .acc { color: #f4d083; }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.6rem; margin-top: 2.6rem; position: relative; }
+    .steps div { border-top: 1px solid rgba(244, 236, 219, .2); padding-top: 1rem; }
+    .steps b { display: block; font-size: 1.5rem; color: #e3a945; }
+    .steps h3 { font-size: 1.3rem; margin: .4rem 0 .3rem; font-weight: 500; }
+    .steps p { color: rgba(244, 236, 219, .7); font-size: .95rem; }
+    /* the four candidates */
+    .a .f { font-family: 'Newsreader', Georgia, serif; font-weight: 500; }
+    .a .acc { font-style: italic; }
+    .b .f { font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-variation-settings: 'opsz' 72; }
+    .b .acc { font-style: italic; }
+    .c .f { font-family: 'Manrope', system-ui, sans-serif; font-weight: 700; letter-spacing: -.03em; }
+    .c .big.f, .c h3.f { font-weight: 600; }
+    .d .f { font-family: 'Outfit', system-ui, sans-serif; font-weight: 500; letter-spacing: -.02em; }
+    @media (max-width: 760px) { .steps { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="intro">
+    <h1>Which font for the headings?</h1>
+    <p>Same text, three fonts. Body text (small grey lines) stays the same in all of them. Tell me the letter.</p>
+  </div>
+
+  <section class="opt a">
+    <span class="label">A · Newsreader <small>calm, readable serif</small></span>
+    <p class="hero f">Kokkopja un <span class="acc">arborista</span> pakalpojumi</p>
+    <p class="big f">Darbus veic <span class="acc">sertificēti arboristi</span>, darbā izmanto <span class="acc">profesionālu aprīkojumu un instrumentus.</span></p>
+    <div class="steps"><div><b class="f">01</b><h3 class="f">Zvans</h3><p>Piezvaniet uz 28 394 620 un pastāstiet par savu koku.</p></div><div><b class="f">02</b><h3 class="f">Konsultācija</h3><p>Bez maksas novērtēsim situāciju un ieteiksim labāko risinājumu.</p></div><div><b class="f">03</b><h3 class="f">Darbs</h3><p>Strādājam droši — ar virvēm un profesionāliem instrumentiem.</p></div><div><b class="f">04</b><h3 class="f">Rezultāts</h3><p>Vesels, kopts koks — vai līdzena vieta, kur bija celms.</p></div></div>
+  </section>
+
+
+  <section class="opt c">
+    <span class="label">B · Manrope <small>clean, modern sans</small></span>
+    <p class="hero f">Kokkopja un <span class="acc">arborista</span> pakalpojumi</p>
+    <p class="big f">Darbus veic <span class="acc">sertificēti arboristi</span>, darbā izmanto <span class="acc">profesionālu aprīkojumu un instrumentus.</span></p>
+    <div class="steps"><div><b class="f">01</b><h3 class="f">Zvans</h3><p>Piezvaniet uz 28 394 620 un pastāstiet par savu koku.</p></div><div><b class="f">02</b><h3 class="f">Konsultācija</h3><p>Bez maksas novērtēsim situāciju un ieteiksim labāko risinājumu.</p></div><div><b class="f">03</b><h3 class="f">Darbs</h3><p>Strādājam droši — ar virvēm un profesionāliem instrumentiem.</p></div><div><b class="f">04</b><h3 class="f">Rezultāts</h3><p>Vesels, kopts koks — vai līdzena vieta, kur bija celms.</p></div></div>
+  </section>
+
+  <section class="opt d">
+    <span class="label">C · Outfit <small>round, friendly sans — the font your current site uses</small></span>
+    <p class="hero f">Kokkopja un <span class="acc">arborista</span> pakalpojumi</p>
+    <p class="big f">Darbus veic <span class="acc">sertificēti arboristi</span>, darbā izmanto <span class="acc">profesionālu aprīkojumu un instrumentus.</span></p>
+    <div class="steps"><div><b class="f">01</b><h3 class="f">Zvans</h3><p>Piezvaniet uz 28 394 620 un pastāstiet par savu koku.</p></div><div><b class="f">02</b><h3 class="f">Konsultācija</h3><p>Bez maksas novērtēsim situāciju un ieteiksim labāko risinājumu.</p></div><div><b class="f">03</b><h3 class="f">Darbs</h3><p>Strādājam droši — ar virvēm un profesionāliem instrumentiem.</p></div><div><b class="f">04</b><h3 class="f">Rezultāts</h3><p>Vesels, kopts koks — vai līdzena vieta, kur bija celms.</p></div></div>
+  </section>
+</body>
+</html>

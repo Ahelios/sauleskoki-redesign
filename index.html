@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Saules Koki redesign</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #f4f2ea; --ink: #18200f; --muted: #646a5b; --card: #fff; --line: rgba(24, 32, 15, .12); --olive: #6d7300; }
+    body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; background: var(--bg); color: var(--ink); line-height: 1.55; padding: 48px 16px 64px; }
+    .wrap { max-width: 1180px; margin: 0 auto; }
+    h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -.02em; }
+    .sub { color: var(--muted); margin: .4rem 0 2.2rem; max-width: 46rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    a.card { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; text-decoration: none; color: inherit; transition: transform .25s, box-shadow .25s; }
+    a.card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -24px rgba(0, 0, 0, .4); }
+    .card img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; border-bottom: 1px solid var(--line); }
+    .body { padding: 1.1rem 1.2rem 1.3rem; }
+    .body b { font-size: 1.15rem; }
+    .body span { display: inline-block; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--olive); margin-bottom: .3rem; }
+    .body p { color: var(--muted); font-size: .95rem; margin-top: .3rem; }
+    .notes { margin-top: 2.6rem; background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.4rem 1.6rem; }
+    .notes h2 { font-size: 1.1rem; margin-bottom: .6rem; }
+    .notes li { margin: .35rem 0 .35rem 1.2rem; color: var(--muted); }
+    .notes li b { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Saules Koki — redesign versions</h1>
+    <p class="sub">Same content as the current sauleskoki.lv, plus photos from the Facebook page. Click a card to open that version. Each one also works on phones — try narrowing the window.</p>
+
+    <h2 style="font-size:1.2rem;margin:0 0 1rem">Newest — real photos &amp; video, professional look</h2>
+    <div class="grid">
+      <a class="card" href="v13-isuma/index.html">
+        <img src="previews/v13-isuma.jpg" alt="Version 13 preview">
+        <div class="body">
+          <span>Version 13 · new · short</span><br><b>Īsumā — the short one</b>
+          <p>Version 12's look cut to about five screens, with motion that needs no reading. The clip-to-crown hero stays. Then a slow moving line with the trust points, six photo tiles that zoom and show "Zvanīt" on hover (each tile is a call), the press-and-hold before/after, two rows of photos that glide past each other, and the contact block. No statement, no steps, no team, no FAQ.</p>
+        </div>
+      </a>
+      <a class="card" href="v12-divi-skati/index.html">
+        <img src="previews/v12-divi-skati.jpg" alt="Version 12 preview">
+        <div class="body">
+          <span>Version 12 · new</span><br><b>Divi skati — from the ground, from the crown</b>
+          <p>A bright, modern page with the Kling clip as the first screen: scroll, and the view climbs from the garden up into the crown (the company's own photo from the treetop). Motion only where it explains something: the nav underline slides to the section you are in, the services are a rail you can drag, press and hold the photo to see the tree after the work, a slider runs through the four stump steps, and the photo wall filters by service with tiles that slide into place. "Save contact" puts the number into the visitor's phone.</p>
+        </div>
+      </a>
+      <a class="card" href="v11-rokasgramata/index.html">
+        <img src="previews/v11-rokasgramata.jpg" alt="Version 11 preview">
+        <div class="body">
+          <span>Version 11 · new</span><br><b>Rokasgrāmata — the arborist's manual</b>
+          <p>Drafting paper, serif headings, one signal-orange accent, the original gold logo. The hero photo has numbered callouts naming the gear. Real photos only, no video: an AI clip would not fit a manual. A "Katrs koks ir citāds" section says everything starts with a call, the before/after blinks between the two photos, and the photos are numbered plates with a list. A few birch, oak and linden leaves drift slowly behind the content. Small motions that explain something: step lines draw in order, plates fade between photos, a service card's "Att." link lights up the plate it jumps to.</p>
+        </div>
+      </a>
+      <a class="card" href="v9-gaisma/index.html">
+        <img src="previews/v9-gaisma.jpg" alt="Version 9 preview">
+        <div class="body">
+          <span>Version 9 · new</span><br><b>Gaisma — light through the letters</b>
+          <p>Giant "SAULES KOKI" letters cut out of a cream page, with the sunlit oak inside. Scroll and the camera dives through the K into the tree. Service cards stack like a deck; words fill in as you scroll; gallery columns drift; sunlight follows the mouse in the contact section.</p>
+        </div>
+      </a>
+      <a class="card" href="v10-gadskarta/index.html">
+        <img src="previews/v10-gadskarta.jpg" alt="Version 10 preview">
+        <div class="body">
+          <span>Version 10 · new</span><br><b>Gadskārta — tree rings &amp; the arborist's year</b>
+          <p>Light and calm, like a field guide. Hand-drawn tree rings behind the photo cards, the logo at their heart. New ideas: a "Kad zvanīt?" year wheel where a small sun sits on today's date, services as five photo panels that open on hover, and a before/after pair with one magnifier that shows the same spot in both photos. Questions are shown side by side, nothing is folded away.</p>
+        </div>
+      </a>
+      <a class="card" href="v6-zelta-stunda/index.html">
+        <img src="previews/v6-zelta-stunda.jpg" alt="Version 6 preview">
+        <div class="body">
+          <span>Version 6</span><br><b>Zelta stunda — golden hour</b>
+          <p>Premium and calm. Your oak photo in warm golden-hour colour with a soft sun flare. Sunlight sweeps across the headline as you scroll. Services: the photo on the left changes as you read each one.</p>
+        </div>
+      </a>
+      <a class="card" href="v7-saules-disks/index.html">
+        <img src="previews/v7-saules-disks.jpg" alt="Version 7 preview">
+        <div class="body">
+          <span>Version 7</span><br><b>Saules disks — sun disc</b>
+          <p>Bold, like a poster. A big sun circle with the tree inside and rotating text. All photos tinted green-and-gold so they match; full colour on hover. Ends with the sun setting behind the phone number.</p>
+        </div>
+      </a>
+      <a class="card" href="v8-no-galotnes/index.html">
+        <img src="previews/v8-no-galotnes.jpg" alt="Version 8 preview">
+        <div class="body">
+          <span>Version 8</span><br><b>No galotnes līdz saknēm — crown to roots</b>
+          <p>Your "descend the tree" idea with real photos. Split screen: text chapters on the left, photos slide up on the right (crown → branches → trunk → stump → team). Height gauge 24 m → 0 m; the sunlight fades as you go down.</p>
+        </div>
+      </a>
+    </div>
+
+    <h2 style="font-size:1.2rem;margin:2.4rem 0 1rem">Earlier versions</h2>
+    <div class="grid">
+      <a class="card" href="v1-saule/index.html">
+        <img src="previews/v1-saule.jpg" alt="Version 1 preview">
+        <div class="body">
+          <span>Version 1</span><br><b>Saule — light &amp; warm</b>
+          <p>Cream and sun-yellow. Elegant serif headings. The logo grows its leaves when the page opens. Photo cards, a drag-to-compare before/after slider, and a gallery that opens photos full-size.</p>
+        </div>
+      </a>
+      <a class="card" href="v2-mezs/index.html">
+        <img src="previews/v2-mezs.jpg" alt="Version 2 preview">
+        <div class="body">
+          <span>Version 2</span><br><b>Mežs — dark &amp; cinematic</b>
+          <p>Full-screen photo slideshow with slow zoom. Huge bold headings. Moving text banner. Service list where a photo follows the mouse. Before/after that wipes across as you scroll.</p>
+        </div>
+      </a>
+      <a class="card" href="v3-spilgts/index.html">
+        <img src="previews/v3-spilgts.jpg" alt="Version 3 preview">
+        <div class="body">
+          <span>Version 3</span><br><b>Spilgts — bright &amp; bold</b>
+          <p>Lime + safety orange (from the helmets in the photos). A "bento" grid of tiles that tilt toward the mouse. Crossing tape banners, icon cards, a Pirms/Pēc toggle, and the stump steps.</p>
+        </div>
+      </a>
+      <a class="card" href="v4-koks/index.html">
+        <img src="previews/v4-koks.jpg" alt="Version 4 preview">
+        <div class="body">
+          <span>Version 4 · new</span><br><b>Koks — descend the tree</b>
+          <p>Your sketch: a tall drawn tree on the left. Scrolling takes you from the crown down to the roots while an arborist comes down the rope and a height counter goes from 24 m to 0 m. Leaves fall — more when you scroll fast.</p>
+        </div>
+      </a>
+      <a class="card" href="v5-saullekts/index.html">
+        <img src="previews/v5-saullekts.jpg" alt="Version 5 preview">
+        <div class="body">
+          <span>Version 5 · new</span><br><b>Saullēkts — sunrise</b>
+          <p>The first screen is a tree at night. Scrolling makes the sky turn to day, a climber cuts the grey dry branches one by one (they fall), and the sun rises over the crown — and turns into the Saules Koki logo.</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="notes">
+      <h2>Before any version goes live</h2>
+      <ul>
+        <li><b>Check the new Latvian texts.</b> A few short lines are new (hero subtitle, "Kā strādājam" steps, photo captions, team text). Everything else is copied from the current site.</li>
+        <li><b>Upload <code>og-image.jpg</code> to the site root.</b> It is the picture Facebook / WhatsApp show when someone shares the link. The live site points to it, but the file is missing today.</li>
+        <li><b>Add the analytics script back</b> (pulse.sauleskoki.lv). It was left out so local previews don't count as visits.</li>
+        <li><b>Copy the <code>img/</code> folder</b> to the server next to the chosen page, and update the image paths from <code>../img/</code> to <code>img/</code>.</li>
+        <li><b>Version 10 has new Latvian text in the "Kad zvanīt?" section</b> — four short season descriptions, including the line about the 15 April – 30 June felling restriction in towns and villages. They are a draft written by the AI, not copied from the site. Eduards should check every sentence there before it goes live.</li>
+        <li><b>Version 13 has no FAQ on the page, so its code also leaves out the FAQ markup for Google</b> (the other versions keep it). Google only wants that markup when the questions are visible. Everything else in its code is the same as version 12.</li>
+        <li><b>All versions load the full-size photos from <code>img/</code>.</b> Before go-live, make smaller copies (about 1600px on the long side, compressed) so the page loads fast on phones. Version 13 shows 19 photos, version 12 shows 20.</li>
+        <li><b>Version 12 has new short Latvian texts</b> — the view labels ("Skats no zemes" / "Skats no galotnes"), the filter chips, "Turiet, lai redzētu pēc", "Saglabāt kontaktu" / "Kopēt numuru" / "Nokopēts", the headings "Seši darbi — viens zvans" and "Viss sākas ar zvanu", and one new sentence: "Jūs redzat koku no dārza. Mēs — arī no vainaga." All AI drafts; Eduards should check them.</li>
+        <li><b>Version 11 has new Latvian text</b> — the six callout labels on the hero photo, the "Kā strādājam" intro and call box, and the plate captions. All of it is an AI draft; Eduards should check the wording. On purpose it describes no cutting technique and has no self-check list.</li>
+        <li><b>The Kling clip is in place.</b> <code>video/hero-1080.mp4</code> (desktop, 6.1 MB) and <code>video/hero-720.mp4</code> (phones, 4.3 MB) were made from <code>kling_20261003_VIDEO_Cinematic__165_0.mp4</code> with <code>./make-video.sh</code>. Versions 6–8, 10, 12 and 13 play it (v6–8: hero background; v10: the second photo card; v12 and v13: the first screen). Version 11 has no video on purpose. If the chosen version uses it, upload the <code>video/</code> folder next to the page. The 19.5 MB Kling original in this folder is only the source; it does not need to go on the server. If you get a new clip, run the script again.</li>
+        <li><b>The Kling clip has a small "KlingAI 3.0" watermark</b> in its bottom-right corner. Versions 10, 12 and 13 crop it away; versions 6–8 show it faintly in the hero. Before going live with one of those, export the clip from Kling without the watermark and run the script again.</li>
+        <li><b>Versions 4 and 5</b> draw their trees with code. Test them on a real phone before choosing — they were checked in Chrome only.</li>
+        <li><b>Logo:</b> each version has the logo redrawn as code (SVG), so it can animate. The old <code>logo.svg</code> was a picture inside an SVG and couldn't move.</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
