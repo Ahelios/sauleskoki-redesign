@@ -358,11 +358,6 @@
     .card figcaption b { color: var(--lime); font-weight: 500; }
 
     /* ── Team ── */
-    .team { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .team img { width: 100%; border-radius: 6px; filter: saturate(1.05) contrast(1.05); }
-    .team h2 { font: 700 clamp(2.4rem, 5vw, 4.6rem)/.92 var(--display); text-transform: uppercase; margin: 1rem 0 1.4rem; }
-    .team h2 span { color: var(--lime); }
-    .team p { color: var(--muted); font-size: 1.08rem; margin-bottom: 2rem; }
 
     /* ── FAQ ── */
     .faq-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 4rem; }
@@ -410,7 +405,7 @@
     @media (max-width: 960px) {
       .nav { display: none; }
       .head-call { margin-left: auto; }
-      .st-grid, .team, .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .st-grid, .faq-grid { grid-template-columns: 1fr; gap: 2rem; }
       .st-label .sun { width: 80px; }
       .row { grid-template-columns: 50px 1fr 52px; gap: 1rem 1.2rem; }
       .row p { grid-column: 2 / 3; grid-row: 2; }
@@ -865,19 +860,6 @@
         <figure class="card"><div class="ph"><img width="900" height="1200" src="../img/above-truck.jpg" alt="Skats no koka galotnes" loading="lazy"></div><figcaption><b>07</b>Skats no galotnes</figcaption></figure>
         <figure class="card"><div class="ph"><img width="960" height="720" src="../img/trunk-rope-up.jpg" alt="Drošības virve gar stumbru" loading="lazy"></div><figcaption><b>08</b>Virve gar stumbru</figcaption></figure>
         <figure class="card"><div class="ph"><img width="1200" height="1200" src="../img/dismantle-triptych.jpg" alt="Koka nozāģēšana soli pa solim" loading="lazy"></div><figcaption><b>09</b>Soli pa solim</figcaption></figure>
-      </div>
-    </section>
-
-    <!-- TEAM -->
-    <section class="sec" style="padding-top:20px">
-      <div class="wrap team">
-        <img width="960" height="720" class="reveal" src="../img/team-oak.jpg" alt="Saules Koki arboristi pie sena ozola" loading="lazy">
-        <div class="reveal" style="--d:.1s">
-          <p class="eyebrow">Komanda</p>
-          <h2>Cilvēki, kas <span>kāpj kokos</span></h2>
-          <p>Esam sertificēti arboristi. Strādājam droši un rūpīgi — ar virvēm, kāpšanas aprīkojumu un profesionāliem instrumentiem. Katram kokam meklējam labāko risinājumu.</p>
-          <a class="btn btn-lime" href="tel:+37128394620">Pieteikt konsultāciju</a>
-        </div>
       </div>
     </section>
 
