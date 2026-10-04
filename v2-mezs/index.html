@@ -35,6 +35,7 @@
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": "https://sauleskoki.lv/#business",
     "name": "Saules Koki",
     "description": "Sertificēti arboristi un kokkopji visā Latvijā. Koku zāģēšana, vainagu veidošana, bīstamu koku nozāģēšana, celmu frēzēšana un augļu koku kopšana.",
     "url": "https://sauleskoki.lv",
@@ -49,7 +50,7 @@
       "@type": "Country",
       "name": "Latvia"
     },
-    "image": "https://sauleskoki.lv/logo.svg",
+    "image": "https://sauleskoki.lv/og-image.jpg",
     "logo": "https://sauleskoki.lv/logo.svg",
     "priceRange": "€€",
     "sameAs": [
@@ -62,29 +63,58 @@
       "itemListElement": [
         {
           "@type": "Offer",
-          "itemOffered": { "@type": "Service", "name": "Konsultācija", "description": "Bezmaksas konsultācija." },
-          "price": "0", "priceCurrency": "EUR"
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Konsultācija",
+            "description": "Bezmaksas konsultācija."
+          },
+          "price": "0",
+          "priceCurrency": "EUR"
         },
         {
           "@type": "Offer",
-          "itemOffered": { "@type": "Service", "name": "Koku vainagu veidošana" }
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Koku vainagu veidošana"
+          }
         },
         {
           "@type": "Offer",
-          "itemOffered": { "@type": "Service", "name": "Sauso un slimo zaru izzāģēšana" }
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Sauso un slimo zaru izzāģēšana"
+          }
         },
         {
           "@type": "Offer",
-          "itemOffered": { "@type": "Service", "name": "Bīstamu koku zāģēšana pa daļām" }
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Bīstamu koku zāģēšana pa daļām"
+          }
         },
         {
           "@type": "Offer",
-          "itemOffered": { "@type": "Service", "name": "Augļu koku kopšana" }
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Augļu koku kopšana"
+          }
         },
         {
           "@type": "Offer",
-          "itemOffered": { "@type": "Service", "name": "Koksnes šķeldošana un celmu frēzēšana" }
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Koksnes šķeldošana un celmu frēzēšana"
+          }
         }
+      ]
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+37128394620",
+      "email": "eduards@sauleskoki.lv",
+      "contactType": "customer service",
+      "availableLanguage": [
+        "lv"
       ]
     }
   }
@@ -137,7 +167,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preload" as="image" href="../img/hero-climber.jpg">
+  <link rel="preload" as="image" imagesrcset="../img/m/hero-climber.jpg 900w, ../img/hero-climber.jpg 1440w" imagesizes="100vw">
   <script>document.documentElement.classList.add('js')</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -568,10 +598,10 @@
     <!-- HERO: full-screen photo slideshow -->
     <section class="hero">
       <div class="slides" aria-hidden="true">
-        <div class="slide on" data-cap="Bīstamu koku zāģēšana"><img width="1920" height="2560" src="../img/hero-climber.jpg" alt="" style="object-position:50% 12%"></div>
-        <div class="slide" data-cap="Liepas vainaga kopšana"><img width="1920" height="1080" src="../img/hero-tilia.jpg" alt="" loading="lazy"></div>
-        <div class="slide" data-cap="Darbs ozola vainagā"><img width="1600" height="1200" src="../img/hero-oak-up.jpg" alt="" loading="lazy"></div>
-        <div class="slide" data-cap="Priedes zāģēšana pa daļām"><img width="1440" height="990" src="../img/pine-log-drop.jpg" alt="" loading="lazy" style="object-position:50% 40%"></div>
+        <div class="slide on" data-cap="Bīstamu koku zāģēšana"><img fetchpriority="high" width="1440" height="1920" src="../img/hero-climber.jpg" srcset="../img/m/hero-climber.jpg 900w, ../img/hero-climber.jpg 1440w" sizes="100vw" alt="" style="object-position:50% 12%"></div>
+        <div class="slide" data-cap="Liepas vainaga kopšana"><img width="1920" height="1080" src="../img/hero-tilia.jpg" srcset="../img/m/hero-tilia.jpg 900w, ../img/hero-tilia.jpg 1920w" sizes="100vw" alt="" loading="lazy"></div>
+        <div class="slide" data-cap="Darbs ozola vainagā"><img width="1600" height="1200" src="../img/hero-oak-up.jpg" srcset="../img/m/hero-oak-up.jpg 900w, ../img/hero-oak-up.jpg 1600w" sizes="100vw" alt="" loading="lazy"></div>
+        <div class="slide" data-cap="Priedes zāģēšana pa daļām"><img width="1440" height="990" src="../img/pine-log-drop.jpg" srcset="../img/m/pine-log-drop.jpg 900w, ../img/pine-log-drop.jpg 1440w" sizes="100vw" alt="" loading="lazy" style="object-position:50% 40%"></div>
       </div>
       <div class="wrap hero-inner">
         <p class="eyebrow">Sertificēti arboristi — visā Latvijā</p>
@@ -785,12 +815,12 @@
             <p>Novērtēsim situāciju un ieteiksim labāko risinājumu.</p>
             <span class="arr"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a class="row reveal" href="#kontakti" data-img="../img/lindens-shaped.jpg">
+          <a class="row reveal" href="#kontakti" data-img="../img/m/lindens-shaped.jpg">
             <span class="n">02</span>
             <h3>Koku vainagu veidošana</h3>
             <p>Profesionāla vainagu koriģēšana koka veselībai un estētikai.</p>
             <span class="arr"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            <span class="thumb"><img width="960" height="720" src="../img/lindens-shaped.jpg" alt="" loading="lazy"></span>
+            <span class="thumb"><img width="960" height="720" src="../img/lindens-shaped.jpg" srcset="../img/m/lindens-shaped.jpg 900w, ../img/lindens-shaped.jpg 960w" sizes="(max-width: 960px) 92vw, 300px" alt="" loading="lazy"></span>
           </a>
           <a class="row reveal" href="#kontakti" data-video="../video/crown.mp4" data-poster="../img/row-crown.jpg">
             <span class="n">03</span>
@@ -806,12 +836,12 @@
             <span class="arr"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="thumb"><video width="478" height="270" muted loop playsinline preload="none" poster="../img/row-dismantle.jpg" data-src="../video/dismantle.mp4" aria-hidden="true"></video></span>
           </a>
-          <a class="row reveal" href="#kontakti" data-img="../img/above-blossom.jpg">
+          <a class="row reveal" href="#kontakti" data-img="../img/m/above-blossom.jpg">
             <span class="n">05</span>
             <h3>Augļu koku kopšana</h3>
             <p>Atzarošana un veidošana labākai ražai un ilgmūžībai.</p>
             <span class="arr"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            <span class="thumb"><img width="1200" height="1200" src="../img/above-blossom.jpg" alt="" loading="lazy"></span>
+            <span class="thumb"><img width="1200" height="1200" src="../img/above-blossom.jpg" srcset="../img/m/above-blossom.jpg 900w, ../img/above-blossom.jpg 1200w" sizes="(max-width: 960px) 92vw, 300px" alt="" loading="lazy"></span>
           </a>
           <a class="row reveal" href="#kontakti" data-seq="../img/stump-1-koks.jpg,../img/stump-2-celms.jpg,../img/stump-3-bedre.jpg,../img/stump-4-vieta.jpg">
             <span class="n">06</span>
@@ -837,8 +867,8 @@
           <p>Vainaga kopšana: izzāģēti sausie un liekie zari. Koks kļūst vieglāks, drošāks un veselīgāks.</p>
         </div>
         <div class="wipe-box">
-          <img width="1400" height="903" src="../img/before-crown.jpg" alt="Koka vainags pirms kopšanas" loading="lazy">
-          <img width="1400" height="903" class="after" src="../img/after-crown.jpg" alt="Koka vainags pēc kopšanas" loading="lazy">
+          <img width="1400" height="903" src="../img/before-crown.jpg" srcset="../img/m/before-crown.jpg 900w, ../img/before-crown.jpg 1400w" sizes="(max-width: 960px) 100vw, 1240px" alt="Koka vainags pirms kopšanas" loading="lazy">
+          <img width="1400" height="903" class="after" src="../img/after-crown.jpg" srcset="../img/m/after-crown.jpg 900w, ../img/after-crown.jpg 1400w" sizes="(max-width: 960px) 100vw, 1240px" alt="Koka vainags pēc kopšanas" loading="lazy">
           <span class="edge"></span>
           <span class="tag b">Pirms</span>
           <span class="tag a">Pēc</span>
@@ -870,15 +900,15 @@
         </div>
       </div>
       <div class="track" data-track>
-        <figure class="card"><div class="ph"><img width="900" height="1200" src="../img/climb-tall-trees.jpg" alt="Arborists augstā kokā" loading="lazy"></div><figcaption><b>01</b>Darbs augstu kokos</figcaption></figure>
-        <figure class="card"><div class="ph"><img width="1920" height="1080" src="../img/hero-tilia.jpg" alt="Liepas vainaga kopšana no augšas" loading="lazy"></div><figcaption><b>02</b>Liepas vainaga kopšana</figcaption></figure>
-        <figure class="card"><div class="ph"><img width="900" height="1200" src="../img/dismantle-tall.jpg" alt="Koka zāģēšana pa daļām" loading="lazy"></div><figcaption><b>03</b>Zāģēšana pa daļām</figcaption></figure>
-        <figure class="card"><div class="ph"><img width="1200" height="900" src="../img/stork-nest.jpg" alt="Stārķu mazuļi ligzdā" loading="lazy"></div><figcaption><b>04</b>Kokos sastopam arī iemītniekus</figcaption></figure>
-        <figure class="card"><div class="ph"><img width="900" height="1200" src="../img/pine-lake.jpg" alt="Priede ar izzāģētiem zariem" loading="lazy"></div><figcaption><b>05</b>Priedes zaru izzāģēšana</figcaption></figure>
-        <figure class="card"><div class="ph"><img width="960" height="720" src="../img/oak-team-wide.jpg" alt="Sens ozols pēc kopšanas" loading="lazy"></div><figcaption><b>06</b>Sena ozola kopšana</figcaption></figure>
-        <figure class="card"><div class="ph"><img width="900" height="1200" src="../img/above-truck.jpg" alt="Skats no koka galotnes" loading="lazy"></div><figcaption><b>07</b>Skats no galotnes</figcaption></figure>
-        <figure class="card"><div class="ph"><img width="960" height="720" src="../img/trunk-rope-up.jpg" alt="Drošības virve gar stumbru" loading="lazy"></div><figcaption><b>08</b>Virve gar stumbru</figcaption></figure>
-        <figure class="card"><div class="ph"><img width="1200" height="1200" src="../img/dismantle-triptych.jpg" alt="Koka nozāģēšana soli pa solim" loading="lazy"></div><figcaption><b>09</b>Soli pa solim</figcaption></figure>
+        <figure class="card"><div class="ph"><img width="900" height="1200" src="../img/climb-tall-trees.jpg" srcset="../img/m/climb-tall-trees.jpg 900w, ../img/climb-tall-trees.jpg 900w" sizes="(max-width: 640px) 85vw, 42vw" alt="Arborists augstā kokā" loading="lazy"></div><figcaption><b>01</b>Darbs augstu kokos</figcaption></figure>
+        <figure class="card"><div class="ph"><img width="1920" height="1080" src="../img/hero-tilia.jpg" srcset="../img/m/hero-tilia.jpg 900w, ../img/hero-tilia.jpg 1920w" sizes="(max-width: 640px) 85vw, 42vw" alt="Liepas vainaga kopšana no augšas" loading="lazy"></div><figcaption><b>02</b>Liepas vainaga kopšana</figcaption></figure>
+        <figure class="card"><div class="ph"><img width="900" height="1200" src="../img/dismantle-tall.jpg" srcset="../img/m/dismantle-tall.jpg 900w, ../img/dismantle-tall.jpg 900w" sizes="(max-width: 640px) 85vw, 42vw" alt="Koka zāģēšana pa daļām" loading="lazy"></div><figcaption><b>03</b>Zāģēšana pa daļām</figcaption></figure>
+        <figure class="card"><div class="ph"><img width="1200" height="900" src="../img/stork-nest.jpg" srcset="../img/m/stork-nest.jpg 900w, ../img/stork-nest.jpg 1200w" sizes="(max-width: 640px) 85vw, 42vw" alt="Stārķu mazuļi ligzdā" loading="lazy"></div><figcaption><b>04</b>Kokos sastopam arī iemītniekus</figcaption></figure>
+        <figure class="card"><div class="ph"><img width="900" height="1200" src="../img/pine-lake.jpg" srcset="../img/m/pine-lake.jpg 900w, ../img/pine-lake.jpg 900w" sizes="(max-width: 640px) 85vw, 42vw" alt="Priede ar izzāģētiem zariem" loading="lazy"></div><figcaption><b>05</b>Priedes zaru izzāģēšana</figcaption></figure>
+        <figure class="card"><div class="ph"><img width="960" height="720" src="../img/oak-team-wide.jpg" srcset="../img/m/oak-team-wide.jpg 900w, ../img/oak-team-wide.jpg 960w" sizes="(max-width: 640px) 85vw, 42vw" alt="Sens ozols pēc kopšanas" loading="lazy"></div><figcaption><b>06</b>Sena ozola kopšana</figcaption></figure>
+        <figure class="card"><div class="ph"><img width="900" height="1200" src="../img/above-truck.jpg" srcset="../img/m/above-truck.jpg 900w, ../img/above-truck.jpg 900w" sizes="(max-width: 640px) 85vw, 42vw" alt="Skats no koka galotnes" loading="lazy"></div><figcaption><b>07</b>Skats no galotnes</figcaption></figure>
+        <figure class="card"><div class="ph"><img width="960" height="720" src="../img/trunk-rope-up.jpg" srcset="../img/m/trunk-rope-up.jpg 900w, ../img/trunk-rope-up.jpg 960w" sizes="(max-width: 640px) 85vw, 42vw" alt="Drošības virve gar stumbru" loading="lazy"></div><figcaption><b>08</b>Virve gar stumbru</figcaption></figure>
+        <figure class="card"><div class="ph"><img width="1200" height="1200" src="../img/dismantle-triptych.jpg" srcset="../img/m/dismantle-triptych.jpg 900w, ../img/dismantle-triptych.jpg 1200w" sizes="(max-width: 640px) 85vw, 42vw" alt="Koka nozāģēšana soli pa solim" loading="lazy"></div><figcaption><b>09</b>Soli pa solim</figcaption></figure>
       </div>
     </section>
 

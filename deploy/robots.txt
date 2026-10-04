@@ -1,0 +1,5 @@
+# sauleskoki.lv — put this file in the site root at go-live. (The draft site on GitHub Pages uses a different one that blocks search engines.)
+User-agent: *
+Allow: /
+
+Sitemap: https://sauleskoki.lv/sitemap.xml
