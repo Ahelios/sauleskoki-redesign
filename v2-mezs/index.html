@@ -307,6 +307,18 @@
     .peek.video video { display: block; }
     .peek.video img { display: none; }
     .row .thumb video { width: 100%; height: 100%; object-fit: cover; }
+    /* step-by-step photo sequence (the stump job): the four pictures take turns; four dots show the step */
+    .seq { position: relative; }
+    .seq img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .45s; }
+    .seq img.on { opacity: 1; }
+    .seq .dots { position: absolute; right: 10px; bottom: 10px; display: flex; gap: 5px; z-index: 2; }
+    .seq .dots b { display: block; width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, .45); transition: background .3s; }
+    .seq .dots b.on { background: var(--lime); }
+    .peek .seq-box { display: none; position: absolute; inset: 0; }
+    .peek.steps { aspect-ratio: 1; }   /* square, so the whole step photo and its printed label show */
+    .peek.steps .seq-box { display: block; }
+    .peek.steps > img { display: none; }
+    .row .thumb.seq { aspect-ratio: 1; }
     .cert-line { margin-top: 2.6rem; display: flex; gap: 1rem; align-items: center; color: var(--muted); font-size: 1.02rem; }
     .cert-line strong { color: var(--ink); }
     .cert-line .icon { color: var(--lime); width: 1.6em; height: 1.6em; }
@@ -417,6 +429,13 @@
       .peek { display: none; }
       .row .thumb { display: block; grid-column: 1 / -1; border-radius: 4px; overflow: hidden; aspect-ratio: 16 / 9; margin-top: .4rem; }
       .row .thumb img { width: 100%; height: 100%; object-fit: cover; }
+      /* no hover card here, and the phone number is always on screen: rows are plain items, not links */
+      .row .arr { visibility: hidden; }
+      .row:hover, .row:focus-visible { color: inherit; }
+      .row:hover::before, .row:focus-visible::before { transform: scaleY(0); }
+      .row:hover .n, .row:focus-visible .n { color: var(--lime); }
+      .row:hover p, .row:focus-visible p { color: var(--muted); }
+      .row:hover .free { background: var(--lime); color: var(--bg); }
     }
     @media (max-width: 640px) {
       .wrap { width: calc(100% - 32px); }
@@ -794,12 +813,12 @@
             <span class="arr"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="thumb"><img width="1200" height="1200" src="../img/above-blossom.jpg" alt="" loading="lazy"></span>
           </a>
-          <a class="row reveal" href="#kontakti" data-img="../img/stump-3-bedre.jpg">
+          <a class="row reveal" href="#kontakti" data-seq="../img/stump-1-koks.jpg,../img/stump-2-celms.jpg,../img/stump-3-bedre.jpg,../img/stump-4-vieta.jpg">
             <span class="n">06</span>
             <h3>Koksnes šķeldošana, celmu frēzēšana</h3>
             <p>Pārvēršam koksni šķeldā, kas noderēs kā pārklājums dārzam vai kompostam.</p>
             <span class="arr"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            <span class="thumb"><img style="object-position:50% 0" width="467" height="466" src="../img/stump-3-bedre.jpg" alt="" loading="lazy"></span>
+            <span class="thumb seq" data-seq="../img/stump-1-koks.jpg,../img/stump-2-celms.jpg,../img/stump-3-bedre.jpg,../img/stump-4-vieta.jpg"><img class="on" width="468" height="467" src="../img/stump-1-koks.jpg" alt="Koks" loading="lazy"><img width="466" height="467" src="../img/stump-2-celms.jpg" alt="Celms" loading="lazy"><img width="467" height="466" src="../img/stump-3-bedre.jpg" alt="Bedre pēc frēzēšanas" loading="lazy"><img width="467" height="467" src="../img/stump-4-vieta.jpg" alt="Līdzena vieta" loading="lazy"><i class="dots" aria-hidden="true"><b class="on"></b><b></b><b></b><b></b></i></span>
           </a>
         </div>
         <p class="cert-line reveal">
@@ -807,7 +826,7 @@
           <span>Darbus veic <strong>sertificēti arboristi</strong>, darbā izmanto <strong>profesionālu aprīkojumu un instrumentus</strong>.</span>
         </p>
       </div>
-      <div class="peek" aria-hidden="true"><img alt=""><video muted loop playsinline preload="none"></video></div>
+      <div class="peek" aria-hidden="true"><img alt=""><video muted loop playsinline preload="none"></video><div class="seq-box seq"></div></div>
     </section>
 
     <!-- BEFORE → AFTER (scroll to wipe) -->
@@ -1088,33 +1107,50 @@
     addEventListener('resize', onScrollFx);
     onScrollFx();
 
-    // ── Services: photo follows the mouse on hover (desktop only) ──
-    const peek = document.querySelector('.peek'), peekImg = peek.querySelector('img'), peekVid = peek.querySelector('video');
+    // ── Step-by-step photo sequence (the stump job): the pictures take turns, 1.3 s each ──
+    const seqTimers = new Map();
+    const seqBuild = (box, srcs) => { if (box.querySelector('img')) return; srcs.forEach((src, i) => { const im = document.createElement('img'); im.src = src; im.alt = ''; if (!i) im.classList.add('on'); box.appendChild(im); }); const dots = document.createElement('i'); dots.className = 'dots'; srcs.forEach((_, i) => { const b = document.createElement('b'); if (!i) b.classList.add('on'); dots.appendChild(b); }); box.appendChild(dots); };
+    const seqShow = (box, k) => { box.querySelectorAll('img').forEach((im, i) => im.classList.toggle('on', i === k)); box.querySelectorAll('.dots b').forEach((d, i) => d.classList.toggle('on', i === k)); };
+    const seqStop = box => { const t = seqTimers.get(box); if (t) { clearInterval(t); seqTimers.delete(box); } };
+    const seqStart = (box, srcs) => { seqBuild(box, srcs); seqStop(box); let k = 0; seqShow(box, 0); if (reduce) return; seqTimers.set(box, setInterval(() => { k = (k + 1) % srcs.length; seqShow(box, k); }, 1300)); };
+
+    // ── Services: photo, clip or sequence follows the mouse on hover (desktop only) ──
+    const peek = document.querySelector('.peek'), peekImg = peek.querySelector('img'), peekVid = peek.querySelector('video'), peekSeq = peek.querySelector('.seq-box');
     if (matchMedia('(hover: hover) and (min-width: 961px)').matches) {
       let x = 0, y = 0, tx = 0, ty = 0, loop = 0;
       const follow = () => { x += (tx - x) * .15; y += (ty - y) * .15; peek.style.left = x + 'px'; peek.style.top = y + 'px'; loop = requestAnimationFrame(follow); };
       document.querySelectorAll('.row').forEach(row => {
         row.addEventListener('mouseenter', e => {
-          if (!row.dataset.img && !row.dataset.video) { peek.classList.remove('show'); return; }
-          if (row.dataset.video) { peek.classList.add('video'); if (peekVid.dataset.cur !== row.dataset.video) { peekVid.dataset.cur = row.dataset.video; peekVid.poster = row.dataset.poster || ''; peekVid.src = row.dataset.video; } if (!reduce) peekVid.play().catch(() => {}); }
-          else { peek.classList.remove('video'); peekVid.pause(); peekImg.src = row.dataset.img; }
+          const seq = row.dataset.seq;
+          if (!row.dataset.img && !row.dataset.video && !seq) { peek.classList.remove('show'); return; }
+          peek.classList.toggle('video', !!row.dataset.video); peek.classList.toggle('steps', !!seq);
+          seqStop(peekSeq); peekVid.pause();
+          if (row.dataset.video) { if (peekVid.dataset.cur !== row.dataset.video) { peekVid.dataset.cur = row.dataset.video; peekVid.poster = row.dataset.poster || ''; peekVid.src = row.dataset.video; } if (!reduce) peekVid.play().catch(() => {}); }
+          else if (seq) { seqStart(peekSeq, seq.split(',')); }
+          else { peekImg.src = row.dataset.img; }
           peek.classList.add('show'); if (!loop) { x = tx = e.clientX; y = ty = e.clientY; follow(); } });
         row.addEventListener('mousemove', e => { tx = e.clientX + 170; ty = e.clientY; });
-        row.addEventListener('mouseleave', () => { peek.classList.remove('show'); peekVid.pause(); });
+        row.addEventListener('mouseleave', () => { peek.classList.remove('show'); peekVid.pause(); seqStop(peekSeq); });
       });
       document.querySelector('.rows').addEventListener('mouseleave', () => { cancelAnimationFrame(loop); loop = 0; });
     }
 
-    // ── Phones: the two clips in the service list play only while they are on screen ──
-    const rowClips = [...document.querySelectorAll('.row .thumb video')];
-    if (rowClips.length && !reduce && !(navigator.connection && navigator.connection.saveData)) {
-      // only one clip plays at a time: the one nearest the middle of the screen
+    // ── Phones: the moving row pictures (two clips, one photo sequence) run only while on screen, one at a time ──
+    const rowMedia = [...document.querySelectorAll('.row .thumb video, .row .thumb.seq')].map(el => el.tagName === 'VIDEO'
+      ? { el, play() { if (!el.src) el.src = el.dataset.src; el.play().catch(() => {}); }, pause() { el.pause(); } }
+      : { el, play() { if (!seqTimers.has(el)) seqStart(el, el.dataset.seq.split(',')); }, pause() { seqStop(el); } });
+    if (rowMedia.length && !reduce && !(navigator.connection && navigator.connection.saveData)) {
       const onScreen = new Set();
-      const pick = () => { let best = null, d0 = 1e9; onScreen.forEach(v => { const r = v.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - innerHeight / 2); if (d < d0) { d0 = d; best = v; } }); rowClips.forEach(v => { if (v === best) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }); };
-      const cio = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target)); pick(); }, { threshold: .35 });
-      rowClips.forEach(v => cio.observe(v));
+      const pick = () => { let best = null, d0 = 1e9; onScreen.forEach(m => { const r = m.el.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - innerHeight / 2); if (d < d0) { d0 = d; best = m; } }); rowMedia.forEach(m => m === best ? m.play() : m.pause()); };
+      const cio = new IntersectionObserver(es => { es.forEach(e => { const m = rowMedia.find(x => x.el === e.target); e.isIntersecting ? onScreen.add(m) : onScreen.delete(m); }); pick(); }, { threshold: .35 });
+      rowMedia.forEach(m => cio.observe(m.el));
       let clipTick = false; addEventListener('scroll', () => { if (onScreen.size > 1 && !clipTick) { clipTick = true; requestAnimationFrame(() => { pick(); clipTick = false; }); } }, { passive: true });
     }
+
+    // ── Phones and tablets: no hover card, and the number is always on screen, so the rows are not links ──
+    const noHover = matchMedia('(hover: none), (max-width: 960px)');
+    const rowLinks = () => document.querySelectorAll('.row').forEach(r => { if (noHover.matches) { if (r.hasAttribute('href')) { r.dataset.href = r.getAttribute('href'); r.removeAttribute('href'); } } else if (r.dataset.href && !r.hasAttribute('href')) r.setAttribute('href', r.dataset.href); });
+    rowLinks(); noHover.addEventListener('change', rowLinks);
 
     // ── Gallery track: arrow buttons + drag with the mouse ──
     const track = document.querySelector('[data-track]');
