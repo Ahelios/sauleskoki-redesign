@@ -300,6 +300,13 @@
     }
     .peek.show { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(-3deg); }
     .peek img { width: 100%; height: 100%; object-fit: cover; }
+    /* video rows: the hover card turns landscape and plays the clip; on phones the row picture plays it while on screen.
+       The clips keep their black bars inside the file; a 16:9 box with object-fit: cover shows exactly the picture band. */
+    .peek video { display: none; width: 100%; height: 100%; object-fit: cover; }
+    .peek.video { width: 360px; aspect-ratio: 16 / 9; }
+    .peek.video video { display: block; }
+    .peek.video img { display: none; }
+    .row .thumb video { width: 100%; height: 100%; object-fit: cover; }
     .cert-line { margin-top: 2.6rem; display: flex; gap: 1rem; align-items: center; color: var(--muted); font-size: 1.02rem; }
     .cert-line strong { color: var(--ink); }
     .cert-line .icon { color: var(--lime); width: 1.6em; height: 1.6em; }
@@ -758,12 +765,11 @@
       <div class="wrap">
         <h2 class="sec-title reveal">Pakalpojumi <sup>(06)</sup></h2>
         <div class="rows">
-          <a class="row reveal" href="#kontakti" data-img="../img/team-oak.jpg">
+          <a class="row reveal" href="#kontakti">
             <span class="n">01</span>
             <h3>Konsultācija <span class="free">Bezmaksas</span></h3>
             <p>Novērtēsim situāciju un ieteiksim labāko risinājumu.</p>
             <span class="arr"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            <span class="thumb"><img width="960" height="720" src="../img/team-oak.jpg" alt="" loading="lazy"></span>
           </a>
           <a class="row reveal" href="#kontakti" data-img="../img/lindens-shaped.jpg">
             <span class="n">02</span>
@@ -772,19 +778,19 @@
             <span class="arr"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="thumb"><img width="960" height="720" src="../img/lindens-shaped.jpg" alt="" loading="lazy"></span>
           </a>
-          <a class="row reveal" href="#kontakti" data-img="../img/climbers-in-oak.jpg">
+          <a class="row reveal" href="#kontakti" data-video="../video/crown.mp4" data-poster="../img/row-crown.jpg">
             <span class="n">03</span>
             <h3>Sauso un slimo zaru izzāģēšana</h3>
             <p>Savlaicīga bojātu zaru noņemšana palīdz kokam atgūt spēku un novērš draudus.</p>
             <span class="arr"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            <span class="thumb"><img width="675" height="1200" src="../img/climbers-in-oak.jpg" alt="" loading="lazy"></span>
+            <span class="thumb"><video width="478" height="270" muted loop playsinline preload="none" poster="../img/row-crown.jpg" data-src="../video/crown.mp4" aria-hidden="true"></video></span>
           </a>
-          <a class="row reveal" href="#kontakti" data-img="../img/dismantle-tall.jpg">
+          <a class="row reveal" href="#kontakti" data-video="../video/dismantle.mp4" data-poster="../img/row-dismantle.jpg">
             <span class="n">04</span>
             <h3>Bīstamu koku zāģēšana pa daļām</h3>
             <p>Kontrolēta un droša nozāģēšana pat sarežģītos apstākļos.</p>
             <span class="arr"><svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            <span class="thumb"><img width="900" height="1200" src="../img/dismantle-tall.jpg" alt="" loading="lazy"></span>
+            <span class="thumb"><video width="478" height="270" muted loop playsinline preload="none" poster="../img/row-dismantle.jpg" data-src="../video/dismantle.mp4" aria-hidden="true"></video></span>
           </a>
           <a class="row reveal" href="#kontakti" data-img="../img/above-blossom.jpg">
             <span class="n">05</span>
@@ -806,7 +812,7 @@
           <span>Darbus veic <strong>sertificēti arboristi</strong>, darbā izmanto <strong>profesionālu aprīkojumu un instrumentus</strong>.</span>
         </p>
       </div>
-      <div class="peek" aria-hidden="true"><img alt=""></div>
+      <div class="peek" aria-hidden="true"><img alt=""><video muted loop playsinline preload="none"></video></div>
     </section>
 
     <!-- BEFORE → AFTER (scroll to wipe) -->
@@ -1101,16 +1107,31 @@
     onScrollFx();
 
     // ── Services: photo follows the mouse on hover (desktop only) ──
-    const peek = document.querySelector('.peek'), peekImg = peek.querySelector('img');
+    const peek = document.querySelector('.peek'), peekImg = peek.querySelector('img'), peekVid = peek.querySelector('video');
     if (matchMedia('(hover: hover) and (min-width: 961px)').matches) {
       let x = 0, y = 0, tx = 0, ty = 0, loop = 0;
       const follow = () => { x += (tx - x) * .15; y += (ty - y) * .15; peek.style.left = x + 'px'; peek.style.top = y + 'px'; loop = requestAnimationFrame(follow); };
       document.querySelectorAll('.row').forEach(row => {
-        row.addEventListener('mouseenter', e => { peekImg.src = row.dataset.img; peek.classList.add('show'); if (!loop) { x = tx = e.clientX; y = ty = e.clientY; follow(); } });
+        row.addEventListener('mouseenter', e => {
+          if (!row.dataset.img && !row.dataset.video) { peek.classList.remove('show'); return; }
+          if (row.dataset.video) { peek.classList.add('video'); if (peekVid.dataset.cur !== row.dataset.video) { peekVid.dataset.cur = row.dataset.video; peekVid.poster = row.dataset.poster || ''; peekVid.src = row.dataset.video; } if (!reduce) peekVid.play().catch(() => {}); }
+          else { peek.classList.remove('video'); peekVid.pause(); peekImg.src = row.dataset.img; }
+          peek.classList.add('show'); if (!loop) { x = tx = e.clientX; y = ty = e.clientY; follow(); } });
         row.addEventListener('mousemove', e => { tx = e.clientX + 170; ty = e.clientY; });
-        row.addEventListener('mouseleave', () => { peek.classList.remove('show'); });
+        row.addEventListener('mouseleave', () => { peek.classList.remove('show'); peekVid.pause(); });
       });
       document.querySelector('.rows').addEventListener('mouseleave', () => { cancelAnimationFrame(loop); loop = 0; });
+    }
+
+    // ── Phones: the two clips in the service list play only while they are on screen ──
+    const rowClips = [...document.querySelectorAll('.row .thumb video')];
+    if (rowClips.length && !reduce && !(navigator.connection && navigator.connection.saveData)) {
+      // only one clip plays at a time: the one nearest the middle of the screen
+      const onScreen = new Set();
+      const pick = () => { let best = null, d0 = 1e9; onScreen.forEach(v => { const r = v.getBoundingClientRect(); const d = Math.abs(r.top + r.height / 2 - innerHeight / 2); if (d < d0) { d0 = d; best = v; } }); rowClips.forEach(v => { if (v === best) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }); };
+      const cio = new IntersectionObserver(es => { es.forEach(e => e.isIntersecting ? onScreen.add(e.target) : onScreen.delete(e.target)); pick(); }, { threshold: .35 });
+      rowClips.forEach(v => cio.observe(v));
+      let clipTick = false; addEventListener('scroll', () => { if (onScreen.size > 1 && !clipTick) { clipTick = true; requestAnimationFrame(() => { pick(); clipTick = false; }); } }, { passive: true });
     }
 
     // ── Gallery track: arrow buttons + drag with the mouse ──
